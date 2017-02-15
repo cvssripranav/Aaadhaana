@@ -1,0 +1,276 @@
+@CHARSET "ISO-8859-1";
+@font-face {font-family:basic;src: url(basictitlefont.ttf);}
+@font-face {font-family:ps;src: url(ProductSans-Regular.ttf);}
+
+
+
+#vid:valid {
+    color: green;
+}
+#vid:invalid {
+    color: red;
+}
+
+.loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url('index_bg.png') 50% 50% no-repeat rgb(249,249,249);
+}
+
+span
+{
+	
+background-color:#white;
+
+	
+}
+
+
+input:invalid {
+  box-shadow: 0 0 5px 1px red;
+  background-color:red;
+}
+input:valid {
+  box-shadow: 0 0 5px 1px green;
+  background-color:green;
+}
+
+
+#weltxt
+{
+font-size:20px;
+color:#1e90ff;
+font-family:basic;
+font-weight:bold;
+text-shadow:0 0 2px #1e90ff;
+text-align:center;
+margin-top:20px;
+}
+
+
+/*button*/
+.rounds-button {
+    display:block;
+    width:100px;
+	height:40px;
+	position:relative;
+	margin-left:-10px;
+    line-height:30px;
+    color:white;
+    text-align:center;
+    text-decoration:none;
+    background:black;
+    font-size:1em;
+    font-weight:bold;	
+	font-family:ps;	
+	transition-duration:1s;
+	border-radius:5px;
+	border-color:black;
+	transition-property:height,width,color,font-size,background-color,border-color,line-height,box-shadow;
+	
+}
+.rounds-button:hover {
+	text-align:center;
+	text-decoration:none;
+	box-shadow: 0 0 2px black;
+	font-weight:bold;
+	color:black;
+	background-color:white;
+	border-color:white;
+	/*text-shadow: 0 0 2px black;*/
+}
+
+
+
+/*form*/
+
+#formd{
+	padding-top:20px;
+	padding-right:130px;
+	background-color:none;
+	width:450px;
+	height:220px;
+	margin-left:auto;
+	margin-right:auto;
+	/*box-shadow: 0 0 8px black;*/
+}
+
+.form-group label{
+
+color:black;
+font-family:ps;
+
+
+}
+
+
+
+/*home_image*/
+
+#homeimg
+{
+	height:100px;
+	width:400px;
+	margin-left:280px;
+	
+}
+
+body{
+	
+	/*background:repeating-linear-gradient(to right,#222,#222 2px,#fff 2px,#fff 4px);
+	margin-right:0px;*/
+	background-image: url("KuboLoginBG.jpg");
+    Background-attachment: fixed;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+	
+}
+
+
+/*containers*/
+
+#con1{
+	margin-top:40px;
+	height:180px;
+	
+}
+
+	
+
+.container{
+	background-color:none;
+	width:1000px;
+	
+}
+
+#con2{
+	margin-top:40px;
+	
+}
+
+input[type="text"]{
+background-color:white!important;
+color:#1e90ff;
+font-family:ps;
+}
+input[type="email"]{
+background-color:white!important;
+color:#1e90ff;
+font-family:ps;
+}
+input[type="password"]{
+background-color:white!important;
+color:#1e90ff;
+font-family:ps;
+}
+select{
+background-color:white!important;
+color:#1e90ff;
+font-family:ps;
+}
+
+
+
+
+
+
+
+
+/* Admin CSS */
+
+
+#admin-button {
+    display:block;
+    width:100px;
+	height:40px;
+	position:relative;
+	margin-left:20px;
+	margin-top:20px;
+    line-height:20px;
+    color:white;
+    text-align:center;
+    text-decoration:none;
+	text-shadow: 0 0 1px #1e90ff;
+    background-color: #1e90ff;
+    font-size:1em;
+   	font-family:ps;	
+	transition-duration:2s;
+	transition-property:height,width,color,text-shadow,font-size,text-shadow,background-color,line-height,box-shadow;
+	border:none;
+	
+}
+#admin-button:hover {
+	text-align:center;
+	text-decoration:none;
+	/*box-shadow: 0 0 5px black;*/	
+	color:#1e90ff;
+	background-color:white;
+	border:none;
+	
+}
+
+#Kubo-Form
+{
+	padding-top:10px;
+	width:600px;
+	height:230px;
+	margin-left:180px;
+	margin-top:-220px;
+	color:black;
+	
+	
+	
+}
+
+#admin-heading{
+color:#1e90ff;
+font-size:30px;
+font-family:basic;	
+font-weight:bolder;
+
+}
+
+
+#adminimg{
+	height:100px;
+	width:400px;
+	margin-left:290px;
+}
+
+#formheading
+{
+color:black;
+text-shadow:0 0 2px #1e90ff;
+font-size:20px;
+text-align:center;
+font-family:basic;	
+font-weight:bold;
+margin-top:0px;
+margin-left:10px;
+	
+}
+#row1{
+}
+
+#row2{
+	display:inline;
+}
+
+#forblur
+{
+	background-color:#c9dbdc;
+	opacity:0.8;
+	filter: blur(50px);
+	width:500px;
+	height:230px;
+	margin-left:230px;
+	margin-top:60px;
+	
+}
+
+/* Kubo-Home css */
