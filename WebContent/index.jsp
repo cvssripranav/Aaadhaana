@@ -3,14 +3,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Kubo | File Attachment</title>
 </head>
 <body>
 <%@ page import="java.sql.*"%>  
 <%@ page import="java.io.*"%>   
 <%  
-String s=request.getParameter("val");  
+
+String s=request.getParameter("val"); 
+String id=request.getParameter("id");
+System.out.println("index"+id);
 if(s==null || s.trim().equals("")){  
 out.print("Please enter link of atachment");  
 }else{  
@@ -20,16 +24,17 @@ try{
 Class.forName("com.mysql.jdbc.Driver");  
 Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","admin");  
 PreparedStatement ps=con.prepareStatement(  
-"insert into attachment(link,attach) values(?,?)");  
+"insert into attachment(id,link,attach) values(?,?,?)");  
               
 File f=new File(s);  
 FileReader fr=new FileReader(f);  
- int count=0;             
-ps.setString(1, s);  
-ps.setCharacterStream(2,fr,(int)f.length());  
+ int count=0; 
+ ps.setString(1,id);
+ps.setString(2, s);  
+ps.setCharacterStream(3,fr,(int)f.length());  
 int i=ps.executeUpdate();  
 System.out.println(i+" records affected"); 
-PreparedStatement ps1=con.prepareStatement("select * from attachment");  
+PreparedStatement ps1=con.prepareStatement("select * from attachment where id='"+id+"'");  
 //ps.setInt(1,id);  
 ResultSet rs=ps1.executeQuery();  
 while(rs.next()){  
@@ -38,7 +43,7 @@ while(rs.next()){
 count++;
 out.print( '\n');
 System.out.print(count +" files attached '\n'");
-} 
+ } 
 out.print(System.lineSeparator()+ count +" files attached in total");
 con.close();  
               

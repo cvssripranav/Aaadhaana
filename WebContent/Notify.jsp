@@ -3,66 +3,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Notify</title>
+<title>Kubo | Notify</title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<style>
-  	html,body{height:100%; margin:0px;}	
-	
-	 body {
-    background-image: url('imges/websiteBackground.jpg');
- background-position:right bottom , left top;
-  background-repeat: no-repeat;
-   background-size:cover;
-   background-attachment:fixed;
-    
- 
 
-} 
-form.inset {border-style: inset;}
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-#div1 {
-    border-radius: 15px;
-        border: 2px solid grey;
-    padding: 50px;
-    margin:30px;
-}#serch,a:link, a:visited {
-   background-image: url('imges/websiteBackground.jpg');
-    color: grey;
-    border: 2px solid skyblue;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    
-}
 
-#serch:hover,#serch:active,a:hover, a:active {
-    background-color: white;
-    color: brown;
-    font-size:105%;
-}table {
-    border-collapse: collapse;
-    width: 100%;
-    
-}
-
-table, td, th {
-    border: 1px solid grey;
-    text-align:center;
-    height:20px;
-}
-tr,td{
-background-color:skyblue;}
-th{
-background-color:#5bc0de;}
-
-  </style>
-   <link 
-href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" 
-rel="stylesheet">
-       <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-       <script 
-src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="nav_bar.css"/>
+<link rel="stylesheet" type="text/css" href="KuboStudent.css"/> 
   
  <script>
  
@@ -141,8 +91,67 @@ src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   
 </head>
 <body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <!--<div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="KuboHome.html"><img src="index_bg.png" alt="Brand" /></a>
+    </div>-->
+    <div class="collapse navbar-collapse" id="myNavbar">
+	
+      <ul class="nav navbar-nav">
+	  
+        <li><a href="KuboHome.jsp">Home</a></li>
+		  <!--<li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">EC Generator<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            <li><a href="events.html">Department Tree</a></li>
+            <li><a href="chemical-tech-events.html">CHEMICAL</a></li>
+			<li><a href="civil-tech-events.html">CIVIL</a></li>
+			<li><a href="cse-tech-events.html">CSE</a></li>
+			<li><a href="ece-tech-events.html">ECE</a></li>
+			<li><a href="eee-tech-events.html">EEE</a></li>
+			<li><a href="it-tech-events.html">IT</a></li>
+			<li><a href="mech-tech-events.html">MECH</a></li>
+			<li><a href="mba-tech-events.html">MBA</a></li>
+			<li><a href="pharm-tech-events.html">PHARMACY</a></li>
+          </ul>
+        </li>-->
+		<li><a href=<%= "\"StdentDetails.jsp?rno=" + request.getParameter("rno") + "&department="+request.getParameter("department")+"\"" %> id="studentdetails"> My Profile</a></li>
+		 <li><a href=<%= "\"StudentSemPerformance.jsp?rno=" + request.getParameter("rno") + "&department="+request.getParameter("department")+"\"" %> id="studentdetails">My Marks</a></li>
+        <li><a href="#" style="background-color:white; color:#1e90ff">Notify</a></li>
+		<li><a href="#">Blog</a></li>
+		<li><a href="Logout" id="logout">Logout</a></li>
+		<li><a href="#" style="background-color:white; color:#1e90ff">Welcome  <%=" "+session.getAttribute("name")+"! "%></a></li>
+		<!-- <li class="dropdown">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#">REGISTER<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            <li><a href="events.html">Tech Zone</a></li>
+            <li><a href="common.html">Open Zone</a></li>
+			<li><a href="skill.html">Skill Zone </a></li>
+			
+		
+          </ul>
+        </li>-->
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="container" id="con2">
+<h3 id="admin-heading" class="col-xs-offset-3" style="margin-left:400px; margin-top:20px;"> <span>Hey<%=" "+session.getAttribute("name")+", "%>Have a problem with displayed marks?  </span></h3>
 <%@page import="java.util.*,java.io.*,javax.servlet.*,javax.servlet.http.*"%>
 <%
+
 response.setHeader("Cache-Control","no-cache");
 response.setHeader("Cache-Control","no-store");
 response.setHeader("Pragma","no-cache");
@@ -163,37 +172,72 @@ response.setDateHeader ("Expires", 0);
 
  else
  {
-
+String rno=request.getParameter("rno");
+String department=request.getParameter("department");
 
 %>
 <!-- <a href="attendbydate.jsp" target="f2">REFRESH</a>
 <a href="result.jsp" target="f2" style="float: right;">HOME</a><br><br> -->
 
-<a href="Logout" style="float:right">Logout</a>
-<a href=<%= "\"StudentSemPerformance.jsp?rno=" + request.getParameter("rno") + "&department="+request.getParameter("department")+"\"" %>  id="semMarks">SemMarks</a>
-<a href=<%= "\"StdentDetails.jsp?rno=" + request.getParameter("rno")+"&department="+request.getParameter("department")+ "\"" %>  id="semMarks">CompleteDetails</a>
-
-<center><div id="div1">
 
 
-<form name="notify" action="NotifyController"> 
-Roll number:<input type="text" name="rno" id="rno" value=<%=request.getParameter("rno")%> required> 
-<br>
-Department:<input type="text" name="department" id="department" value=<%=request.getParameter("department")%> required ><br>
-Subjects:<textarea rows="4" cols="10" placeholder="Enter subject names for which marks are wrong" name="subjects"></textarea><br>
-Marks:<textarea rows="4" cols="10" placeholder="Enter subject names along with correct marks" name="marks"></textarea><br>
 
-<!-- <input type="button" name="send" value="send" onClick="addInput()"><br><br><br> -->
+<form name="notify" class="form-horizontal" id="Regiform"  action="NotifyController" > 
+
+	  <div class="form-group"> 
+		<label for="rno" class="col-xs-offset-3 col-xs-2 control-label"><span>Roll No.</span></label>
+		<div class="col-xs-3">
+			  <input type="text" style="height:30px"  class="form-control" name="rno" id="rno" value=<%=request.getParameter("rno")%> required/>
+		</div>
+	</div>
+	
+	<div class="form-group"> 
+		<label for="department" class="col-xs-offset-3 col-xs-2 control-label"><span>Department</span></label>
+		<div class="col-xs-3">
+			  <input type="text" style="height:30px"  class="form-control" name="department" id="department" value=<%=request.getParameter("department")%> required/>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		    <label for="subjects" class=" col-xs-offset-3 col-xs-2 control-label"><span>Subjects</span></label>
+		    <textarea class="form-control" name="subjects" placeholder="Enter subject names for which marks are wrong" rows="3" style="width:30%"></textarea>
+	</div>
+	
+	<div class="form-group">
+		    <label for="marks" class=" col-xs-offset-3 col-xs-2 control-label"><span>Marks</span></label>
+		    <textarea class="form-control" name="marks" placeholder="Enter subject names along with marks" rows="3" style="width:30%"></textarea>
+	</div>
+	
+	 <div class="form-group" style="margin-left:-10px">
+		<div class="col-xs-offset-5 col-xs-1" >
+		 <input type="submit" name="notify" class="admin-button" value="Notify" id="notify"> 
+		</div>
+		
+		<div class="col-xs-2" style="margin-left:50px">
+		 <input type="reset" name="reset" class="admin-button" value="Reset" id="reset">
+		</div>
+    </div> 
+
+
+
+
 <div id="mail"> </div>
-<input type="submit" name="notify" value="Notify" id="notify"> 
-<input type="reset" name="reset"	value="Reset" id="reset">
+
+
 
 </form>
 </div>
 
-</center>
+
 <%
 }
 %>
+ <footer>
+	<p>	Kubo - Centralized Placement Web Application<br>
+		 E-mail:cvsrit13@gmail.com<br>
+		 &copy;All rights reserved, Department of Information Technology
+		 <br>2013-2017
+	 </p>
+</footer>
 </body>
 </html>

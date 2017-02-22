@@ -1,0 +1,174 @@
+@CHARSET "ISO-8859-1";
+@font-face {font-family:basic;src: url(basictitlefont.ttf);}
+@font-face {font-family:ps;src: url(ProductSans-Regular.ttf);}
+
+
+
+
+
+
+span
+{
+	
+color:white;
+	
+}
+
+
+
+
+
+
+/*form*/
+
+.form-group label{
+
+
+font-family:ps;
+font-size:16px;
+
+}
+
+
+body{
+	
+	/*background:repeating-linear-gradient(to right,#222,#222 2px,#fff 2px,#fff 4px);
+	margin-right:0px;*/
+	background-image: url("KuboLoginBG2.jpg");
+    Background-attachment: fixed;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+	
+}
+
+
+/*containers*/
+	
+
+.container{
+	
+	width:1000px;
+	
+	
+}
+
+#con2{
+	margin-top:-20px;
+	width:100%;
+	height:100%;
+	
+	
+}
+
+input[type="text"]{
+background-color:#1e90ff!important;
+color:white;
+font-family:ps;
+}
+input[type="email"]{
+background-color:#1e90ff!important;
+color:white;
+font-family:ps;
+}
+input[type="password"]{
+background-color:#1e90ff!important;
+color:white;
+font-family:ps;
+}
+textarea{
+background-color:#1e90ff!important;
+color:white!important;
+font-family:ps;
+}
+select{
+background-color:#1e90ff!important;
+color:white;
+font-family:ps;
+}
+
+input[type="text"]::-webkit-input-placeholder {
+  color:white;
+}
+
+input[type="password"]::-webkit-input-placeholder {
+  color:white;
+}
+
+input[type="email"]::-webkit-input-placeholder {
+  color:white;
+}
+
+textarea ::-webkit-input-placeholder {
+  color:white;
+}
+
+
+
+.regibutton {
+    display:block;
+    width:100px;
+	height:40px;
+	position:relative;
+	margin-left:20px;
+	margin-top:20px;
+    line-height:40px;
+    color:white;
+    text-align:center;
+    text-decoration:none;
+	text-shadow: 0 0 1px #1e90ff;
+    background-color: #1e90ff;
+    font-size:1em;
+   	font-family:ps;	
+	transition-duration:2s;
+	transition-property:height,width,color,text-shadow,font-size,text-shadow,background-color,line-height,box-shadow;
+	border:none;
+	
+}
+.regibutton:hover {
+	text-align:center;
+	text-decoration:none;
+	/*box-shadow: 0 0 5px black;*/	
+	color:#1e90ff;
+	background-color:white;
+	border:none;
+	
+}
+
+
+
+#admin-heading{
+color:#1e90ff;
+font-size:30px;
+font-family:basic;	
+font-weight:bolder;
+
+}
+
+
+#adminimg{
+	height:100px;
+	width:400px;
+	margin-left:290px;
+}
+
+#RegiFormHead{
+color:#1e90ff;
+font-size:20px;
+font-family:ps;	
+font-weight:bolder;
+
+}
+
+
+
+
+#Regiform{
+	
+	width:100%;
+	margin-top:40px;
+	padding-top:20px;
+	box-shadow: 0 0 20px black;
+}
+
+

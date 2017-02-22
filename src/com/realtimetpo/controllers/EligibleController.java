@@ -29,7 +29,15 @@ public class EligibleController extends HttpServlet {
         //read uname/pwd from index.html
         String percent = request.getParameter("percent");
        // String password = request.getParameter("password");
-        
+        String allDept=request.getParameter("all");
+        String cse=request.getParameter("cse");
+        String ece=request.getParameter("ece");
+        String eee=request.getParameter("eee");
+        String it=request.getParameter("it");
+        String mech=request.getParameter("mech");
+        String civil=request.getParameter("civil");
+        String chem=request.getParameter("chem");
+
         //supply this uname and pwd to Users
        Eligibility eligible = EntityFactory.getEligible();
     //   eligible.setPercent(percent);
@@ -38,7 +46,7 @@ public class EligibleController extends HttpServlet {
        List<Eligibility> userList = new ArrayList<Eligibility>();
         //pass users obj to DAO ask him to check credentials
         EligibilityDao edao = DAOFactory.getEligibleDao();
-        userList = edao.getEligibleList(percent);
+       // userList = edao.getEligibleList(percent,allDept,cse,ece,eee,it,mech,civil,chem);
         
         for(Eligibility str: userList){
 			System.out.println(str);

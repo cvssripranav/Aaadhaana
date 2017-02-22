@@ -18,23 +18,47 @@ public class RegController extends HttpServlet {
     {
     //read all incoming req params from registration.html
     	String userid= request.getParameter("userid");
-     String username = request.getParameter("username");
+     /*String name = request.getParameter("username");*/
      String password = request.getParameter("password");
      String department=request.getParameter("dept");
      String name = request.getParameter("name");
      String mobile = request.getParameter("mobile");
-     
+     String email=request.getParameter("mail");
+     String fathername=request.getParameter("fathername");
+     String mothername=request.getParameter("mothername");
+     float tenth=Float.parseFloat(request.getParameter("tenth"));
+     float inter=Float.parseFloat(request.getParameter("inter"));
+     int semester=Integer.parseInt(request.getParameter("sem"));
+     String school=request.getParameter("school");
+     String college=request.getParameter("college");
+     String address=request.getParameter("address");
+     int batch=Integer.parseInt(request.getParameter("batch"));
     //give these values to Users Entity
         Users user = EntityFactory.getUser();
-        user.setUserid(Integer.valueOf(userid));
-        user.setUsername(username);
+        StudentPercent student=EntityFactory.getStudent();
+        user.setUserid(userid);
+        student.setRollNo(userid);
+        //user.setUsername(username);
         user.setPassword(password);
         user.setName(name);
+        student.setName(name);
         user.setMobile(mobile);
+        student.setPhone(mobile);
         user.setDepartment(department);
-    //pass Users entity to DAO, tell him to insertUser
+student.setDepartment(department);
+student.setEmailid(email);
+student.setTenth(tenth);
+student.setIntermediate(inter);
+student.setSchoolName(school);
+student.setInterCollege(college);
+student.setSemesterCompleted(semester);
+student.setStudentBatch(batch);
+student.setAddress(address);
+student.setFather(fathername);
+student.setMother(mothername);
+        //pass Users entity to DAO, tell him to insertUser
       UsersDAO udao = DAOFactory.getUsersDAO();
-      boolean success = udao.insertUser(user);
+      boolean success = udao.insertUser(user,student);
       
     //read the response from DAO, show output to client 
     PrintWriter out = response.getWriter();

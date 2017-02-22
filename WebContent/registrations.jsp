@@ -1,143 +1,164 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>User Registration</title>
+        <title>Kubo | Registration</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-        body{
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  		
+		<link rel="stylesheet" type="text/css" href="KuboRegi.css">
+		
+      
         
-        background-image: url('imges/bg1.jpg');
-        background-position:right bottom , left top;
-  background-repeat: no-repeat;
-   background-size:cover;
-   background-attachment:fixed;
- 
-        
-        }
-        a.first-child {
-    float: right;
-}
-
-a.nth-child(2) {
-    margin-right: 15px;
-    float: right;
-    padding: 10px 25px;
-}
-        
-      a:link, a:visited {
-   background-image: url('imges/bg2.jpg');
-    color: blue;
-    border: 2px solid skyblue;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-     border-image: url("imges/bg2.jpg") 30;
-    
-}
-a:hover, a:active {
-    background-color: url("imges/bg2.jpg") 30;
-    color: brown;
-    font-size:105%;
-} 
-#register,#register:visited{
-color:white;
-background-color:green;
-border: 2px solid green;
- padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-   
-
-}
-#register:hover,#register:active{
-
- color: white;
-    font-size:100%;
-
-
-} 
-        </style>
     </head>
     
     <body>
+      <div class="container" id="con1">
+    		<h3 id="admin-heading" class="col-xs-offset-2"> <span>ANURAG GROUP OF INSTITUTIONS - PLACEMENT CELL</span></h3>
+		<div class="row" id="row1">
+			<div class="col-xs-7">
+			<img src="index_bg.png" id="adminimg"/>
+			</div>
+		</div>
+	</div>
     <%@page import="java.util.*,java.io.*,javax.servlet.*,javax.servlet.http.*"%>
   <%  response.setContentType("text/html");  
-//PrintWriter outs=response.getWriter(); 
-//RequestDispatcher rd = null;
-System.out.println(session.getId()); 
-response.setHeader("Cache-Control","no-cache");
-response.setHeader("Cache-Control","no-store");
-response.setHeader("Pragma","no-cache");
-response.setDateHeader ("Expires", 0);
+%>    
+   
+  
+    
+<div class="container" id="con2">
 
-if(null==session.getAttribute("username"))
-{
-	PrintWriter outs=response.getWriter();
-	 request.getRequestDispatcher("login.jsp").include(request, response);  
-		//rd = request.getRequestDispatcher("registration.html");
-	    //rd.include(request, response);
-	 // response.sendRedirect(request.getContextPath() + "/index.jsp");
-		outs.println("<center><font color=red>Please login to continue</font></center>");
-		outs.close();
-	}
-else{%>    
-    <div style="float:right;">
-   <!--  <a href="Logout"  id="logout" >Logout</a> -->
-     <a href="login.jsp"  id="login" style="float:right">Login</a></div>
-    <center>
-     
-    <img src="imges/agi.png" height="175px" width="1024px" align="right">
-       
-        <form method="POST" action="RegController">
+
+        <form method="POST" class="form-horizontal" id="Regiform" action="RegController">
             
         
-        <table border="0">
-            <tr>
-                <td colspan="2" align="center" style="font-size:x-large;color: red">User Registration</td>
-            </tr>
-             <tr>
-                <td align="right" style="font-size:larger">User Id: </td>
-                <td><input type="text" name="userid" id="userid" required/></td>
-            </tr>
-       
-            <tr>
-                <td align="right" style="font-size:larger">User Name: </td>
-                <td><input type="text" name="username" id="username" required/></td>
-            </tr>
-            <tr>
-                <td align="right" style="font-size:larger">Password: </td>
-                <td><input type="password" name="password" id="password" required /></td>
-            </tr>
-            <tr>
-                <td align="right" style="font-size:larger">Department: </td>
-                <td><input type="text" name="dept" id="dept" required/></td>
-            </tr>
-            <tr>
-                <td align="right" style="font-size:larger">Name: </td>
-                <td><input type="text" name="name" id="name" required/></td>
-            </tr>
-            <tr>
-                <td align="right" style="font-size:larger">Mobile: </td>
-                <td><input type="text" name="mobile" id="mobile" required/></td>
-            </tr>
-            <tr>
-                <td align="right"></td>
-                <td><input type="submit" name="submit" value="Register Me" id="register" /></td></tr>
+           
+            <div class="form-group"> 
+				<label for="userid" class="col-xs-offset-3 col-xs-2 control-label"><span>Roll No.</span></label>
+				<div class="col-xs-3">
+					  <input type="text" style="height:30px"  class="form-control" name="userid"  id="userid" placeholder="Enter Roll No." required/>
+				</div>
+			</div>
             
-        </table>
+            <div class="form-group"> 
+				<label for="password" class=" col-xs-offset-3 col-xs-2 control-label"><span>Password</span></label>
+				<div class=" col-xs-3">
+					  <input type="password" style="height:30px"  class="form-control" name="password"  id="password" placeholder="Enter password" required/>
+				</div>
+			</div>
+            
+            <div class="form-group"> 
+				<label for="name" class=" col-xs-offset-3 col-xs-2 control-label"><span>Name</span></label>
+				<div class=" col-xs-3">
+					  <input type="text" style="height:30px"  class="form-control" name="name"  id="name" placeholder="Enter Name" required/>
+				</div>
+			</div>
+			
+			<div class="form-group"> 
+				<label for="dept" class=" col-xs-offset-3 col-xs-2 control-label"><span>Department</span></label>
+				<div class=" col-xs-3">
+					  <input type="text" style="height:30px"  class="form-control" name="dept"  id="dept" placeholder="Enter Department" required/>
+				</div>
+			</div>
+			
+			<div class="form-group"> 
+				<label for="mobile" class=" col-xs-offset-3 col-xs-2 control-label"><span>Mobile no.</span></label>
+				<div class=" col-xs-3">
+					  <input type="text" style="height:30px"  class="form-control" name="mobile" id="mobile" placeholder="Enter Mobile no." required/>
+				</div>
+			</div>
+            
+            
+			<div class="form-group"> 
+				<label for="mail" class=" col-xs-offset-3 col-xs-2 control-label"><span>E-mail</span></label>
+				<div class=" col-xs-3">
+					  <input type="text" style="height:30px"  class="form-control" name="mail" id="mail" placeholder="Enter E-Mail" required/>
+				</div>
+			</div>
+               
+               
+            <div class="form-group"> 
+				<label for="fathername" class=" col-xs-offset-3 col-xs-2 control-label"><span>Father's Name</span></label>
+				<div class=" col-xs-3">
+					  <input type="text" style="height:30px"  class="form-control" name="fathername" id="fathername" placeholder="Enter Father's name" required/>
+				</div>
+			</div>
+			
+			<div class="form-group"> 
+				<label for="mothername" class=" col-xs-offset-3 col-xs-2 control-label"><span>Mother's Name</span></label>
+				<div class=" col-xs-3">
+					  <input type="text" style="height:30px"  class="form-control"  name="mothername" id="mothername" placeholder="Enter Mother's name" required/>
+				</div>
+			</div>
+			
+			<div class="form-group"> 
+				<label for="tenth" class=" col-xs-offset-3 col-xs-2 control-label"><span>Tenth Percentage</span></label>
+				<div class=" col-xs-3">
+					  <input type="text" style="height:30px"  class="form-control"  name="tenth" id="tenth" placeholder="Enter Tenth percentage" required/>
+				</div>
+			</div>
+			
+			<div class="form-group"> 
+				<label for="inter" class=" col-xs-offset-3 col-xs-2 control-label"><span>Inter Percentage</span></label>
+				<div class=" col-xs-3">
+					  <input type="text" style="height:30px"  class="form-control"  name="inter" id="inter" placeholder="Enter Inter percentage" required/>
+				</div>
+			</div>
+			
+			<div class="form-group"> 
+				<label for="school" class=" col-xs-offset-3 col-xs-2 control-label"><span>School</span></label>
+				<div class=" col-xs-3">
+					  <input type="text" style="height:30px"  class="form-control"  name="school" id="school" placeholder="Enter School Name" required/>
+				</div>
+			</div>
+			
+			<div class="form-group"> 
+				<label for="college" class=" col-xs-offset-3 col-xs-2 control-label"><span>Inter College </span></label>
+				<div class=" col-xs-3">
+					  <input type="text" style="height:30px"  class="form-control"  name="college" id="colege" placeholder="Enter Inter College Name" required/>
+				</div>
+			</div>
+			
+			<div class="form-group"> 
+				<label for="sem" class=" col-xs-offset-3 col-xs-2 control-label"><span>Semester</span></label>
+				<div class=" col-xs-3">
+					  <input type="text" style="height:30px"  class="form-control"  name="sem" id="sem" placeholder="Enter Semester" required/>
+				</div>
+			</div>
+			
+			<div class="form-group"> 
+				<label for="batch" class=" col-xs-offset-3 col-xs-2 control-label"><span>Batch</span></label>
+				<div class=" col-xs-3">
+					  <input type="text" style="height:30px"  class="form-control"   name="batch" id="batch" placeholder="Enter Batch- (2013 if 13H6..)" required/>
+				</div>
+			</div>
+        
+          <div class="form-group">
+		    <label for="address" class=" col-xs-offset-3 col-xs-2 control-label"><span>Address</span></label>
+		    <textarea class="form-control" name="address" rows="3" style="width:30%"></textarea>
+		  </div>
+			
+			 <div class="form-group" style="margin-left:-10px">
+					<div class="col-xs-offset-5 col-xs-1" >
+					 <input type="submit" name="submit" class="regibutton" value="Register Me" id="register" />
+					</div>
+					
+					<div class="col-xs-2">
+					 <a href="login.jsp" class="regibutton" id="login" >Login</a>
+					</div>
+               </div> 
+              
+            
+      
         
       </form>  
-    </center>
-   <%
-   }
-   %>    
+   
+    
+   </div>
+  
+   
     </body>
 </html>

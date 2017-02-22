@@ -3,66 +3,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>Say-bot-you</title>
+<title>Kubo | EC Gen</title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title><style>
-  	html,body{height:100%; margin:0px;}	
-	
-	 body {
-    background-image: url('imges/websiteBackground.jpg');
- background-position:right bottom , left top;
-  background-repeat: no-repeat;
-   background-size:cover;
-   background-attachment:fixed;
-    
- 
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="nav_bar.css"/>
+<link rel="stylesheet" type="text/css" href="ECG.css"/> 
 
-} 
-form.inset {border-style: inset;}
 
-#div1 {
-    border-radius: 15px;
-        border: 2px solid grey;
-    padding: 50px;
-    margin:30px;
-}#serch,a:link, a:visited {
-   background-image: url('imges/websiteBackground.jpg');
-    color: grey;
-    border: 2px solid skyblue;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    
-}
 
-#serch:hover,#serch:active,a:hover, a:active {
-    background-color: white;
-    color: brown;
-    font-size:105%;
-}table {
-    border-collapse: collapse;
-    width: 100%;
-    
-}
 
-table, td, th {
-    border: 1px solid grey;
-    text-align:center;
-    height:20px;
-}
-tr,td{
-background-color:skyblue;}
-th{
-background-color:#5bc0de;}
-
-  </style>
-   <link 
-href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" 
-rel="stylesheet">
-       <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-       <script 
-src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   
  <script>
  
@@ -154,16 +106,8 @@ src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
                 	// alert($('#columnData').html());
                                
-               // });
-               $('.dept1').click(function() {
-            	   if($(this).prop("checked") == true){
-            	   $("#all").prop("disabled","disabled");
-            	   }/* 
-            	   else if($(this).prop("checked") == false)
-            		   $("#all").removeprop("disabled"); */
                });
-               
-          });
+            
         </script>
         <script>$(document).ready(function() {
        	 $('#generate').click(function() {
@@ -180,10 +124,64 @@ src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   
 </head>
 <body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <!--<div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="KuboHome.html"><img src="index_bg.png" alt="Brand" /></a>
+    </div>-->
+    <div class="collapse navbar-collapse" id="myNavbar">
+	
+      <ul class="nav navbar-nav">
+	  
+        <li><a href="KuboHome.jsp" >Home</a></li>
+		  <!--<li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">EC Generator<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            <li><a href="events.html">Department Tree</a></li>
+            <li><a href="chemical-tech-events.html">CHEMICAL</a></li>
+			<li><a href="civil-tech-events.html">CIVIL</a></li>
+			<li><a href="cse-tech-events.html">CSE</a></li>
+			<li><a href="ece-tech-events.html">ECE</a></li>
+			<li><a href="eee-tech-events.html">EEE</a></li>
+			<li><a href="it-tech-events.html">IT</a></li>
+			<li><a href="mech-tech-events.html">MECH</a></li>
+			<li><a href="mba-tech-events.html">MBA</a></li>
+			<li><a href="pharm-tech-events.html">PHARMACY</a></li>
+          </ul>
+        </li>-->
+		<li><a href="trytpo.jsp" style="background-color:white; color:#1e90ff">EC Generator</a></li>
+        <li><a href="ExCD.jsp">Excel <i>to</i> Data</a></li>
+        <li><a href="#">Notification Issuer</a></li>
+		<li><a href="Querydb.jsp">Query DB</a></li>
+		<li><a href="#">SQL Log</a></li>
+		<li><a href="#">Blog</a></li>
+		<li><a href="Logout" id="logout">Logout</a></li>
+		<!-- <li class="dropdown">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#">REGISTER<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            <li><a href="events.html">Tech Zone</a></li>
+            <li><a href="common.html">Open Zone</a></li>
+			<li><a href="skill.html">Skill Zone </a></li>
+			
+		
+          </ul>-->
+        </li>
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+
+<div class="container" id="con1">
+<h3 id="XCDHeading" style="margin-left:480px"><span>Eligibility List Generator</span></h3>
 <%@page import="java.util.*,java.io.*,javax.servlet.*,javax.servlet.http.*"%>
-<!-- <a href="attendbydate.jsp" target="f2">REFRESH</a>
-<a href="result.jsp" target="f2" style="float: right;">HOME</a><br><br> -->
-<a href="Logout" style="float: right;" id="logout">Logout</a><br>
 <%response.setContentType("text/html");  
 //PrintWriter outs=response.getWriter(); 
 //RequestDispatcher rd = null;
@@ -204,33 +202,161 @@ if(null==session.getAttribute("username"))
 		outs.close();
 	}
 else{ %>
-<center><div id="div1">
 
-<form name="searchbydate" action="Eligibles.jsp"> 
-Enter percent:<input type="text" name="percent" id="percent"  required> 
-<br>
-Select Departments:<input type="checkbox" id="all" name="all" >All&emsp;<BR>
-<div class="dept"><input type="checkbox"class="dept1" id="cse" name="CSE" >CSE&emsp;
-<input class="dept1"type="checkbox" id="ece" name="ECE" >ECE&emsp;
-<input class="dept1"type="checkbox" id="eee" name="EEE" >EEE&emsp;
-<input class="dept1" type="checkbox" id="it" name="IT" >IT&emsp;
-<input class="dept1" type="checkbox" id="civil" name="CIVIL" >CIVIL&emsp;
-<input class="dept1"type="checkbox" id="mech" name="MECH" >MECH&emsp;
-<input class="dept1"type="checkbox" id="chem" name="CHEM" >CHEM&emsp;<BR></div>
-Generate Excel::<input type="radio" name="generate" id="generates" value="yes" required onClick="active()">yes &emsp;
+					
+<form name="searchbydate" id="ECGform" class="form-horizontal" action="Eligibles.jsp"> 
+
+	<div class="form-group"> 
+		<label for="percent" class="col-xs-offset-3 col-xs-2 control-label"><span>Enter B.Tech %</span></label>
+		<div class=" col-xs-3">
+			 <input type="text" class="form-control" name="percent" id="percent" placeholder="Enter B.Tech percentage"  required> 
+		</div>
+	</div>
+	
+	<div class="form-group"> 
+		
+		<div class="checkbox-inline" style="margin-left:160px">
+		<label class="col-xs-offset-1 col-xs-1 control-label"><span>Departments</span></label>
+		</div>
+		
+		
+			<div class="checkbox-inline">
+				<label  for="all" class=" col-xs-1 control-label"><input type="checkbox" id="all" name="all" ><span>All</span></label>
+			</div>
+		
+		
+		
+			<div class="checkbox-inline" class="col-xs-offset-1 col-xs-3">
+				<label  for="CSE" class="col-xs-1 control-label"><input type="checkbox" class="dept1" id="cse" name="CSE" value="CSE"><span>CSE</span></label>
+			</div>
+			
+			<div class="checkbox-inline">
+				<label  for="ECE" class="col-xs-1 control-label"><input class="dept1"type="checkbox" id="ece" name="ECE" value="ECE" ><span>ECE</span></label>
+			</div>
+			
+			<div class="checkbox-inline">
+				<label  for="EEE" class="col-xs-1 control-label"><input class="dept1"type="checkbox" id="eee" name="EEE" value="EEE" ><span>EEE</span></label>
+			</div>
+			
+			<div class="checkbox-inline">
+				<label  for="IT" class="col-xs-1 control-label"><input class="dept1" type="checkbox" id="it" name="IT" value="IT"><span>IT</span></label>
+			</div>
+		
+			<div class="checkbox-inline">
+				<label  for="CIVIL" class="col-xs-1 control-label"><input class="dept1" type="checkbox" id="civil" name="CIVIL" value="CIV" ><span>CIVIL</span></label>
+			</div>
+			
+			<div class="checkbox-inline">
+				<label  for="MECH" class="col-xs-1 control-label"><input class="dept1"type="checkbox" id="mech" name="MECH" value="MECH"><span>MECH</span></label>
+			</div>
+			
+			<div class="checkbox-inline">
+				<label  for="CHEM" class="col-xs-1 control-label"><input class="dept1"type="checkbox" id="chem" name="CHEM" value="CHEM"><span>CHEM</span></label>
+			</div>
+			
+			
+		</div>
+
+		
+
+
+
+
+
+
+<!-- Generate Excel::<input type="radio" name="generate" id="generates" value="yes" required onClick="active()">yes &emsp;
 <input type="radio" name="generate" id="generate" value="no" onClick="inactive()">NO &emsp;<br>
 Enter File Name:<input type="text" name="filename" id="filename" required><br>
-Send Mail::<input type="radio" name="mail" id="radiobutton" value="yes" required>yes &emsp; 
-<input type="radio" name="mail" id="radiobutton" value="no">NO &emsp;
+ -->
+		<div class="form-group">
+			<label for="semester" class="col-xs-offset-3 col-xs-2 control-label"><span>Semester</span></label>
+				<div class="col-xs-3">
+					<select class="form-control" name="semester" style="height:30px;">
+						<option  value="1">1</option>
+						<option value="2">2</option>
+						<option  value="3">3</option>
+						<option  value="4">4</option>
+						<option value="5">5</option>
+						<option  value="6">6</option>
+						<option  value="7">7</option>
+						<option  value="8">8</option>	
+								
+					</select>
+				</div>
+		</div>
+					
+		
 
-<!-- <input type="button" name="send" value="send" onClick="addInput()"><br><br><br> -->
-<div id="mail"> </div>
-<input type="submit" name="submit" value="SEARCH" id="serch"> 
+		<div class="form-group">
+			<label for="batch" class="col-xs-offset-3 col-xs-2 control-label"><span>Batch</span></label>
+				<div class="col-xs-3">
+					<select class="form-control" name="batch" style="height:30px;">
+						<option  value="2012">2012</option>
+						<option value="2013">2013</option>
+							
+								
+					</select>
+				</div>
+		</div>
+ 
+ <!--Batch:<input type="text" name="batch" value="batch"><br>-->
+ 
+	<div class="form-group"> 
+		<label for="tenth" class=" col-xs-offset-3 col-xs-2 control-label"><span>10th Percent</span> </label>
+			<div class=" col-xs-3">
+				  <input type="text" style="height:30px" class="form-control" name="tenth" placeholder="Enter 10th percentage" required>
+			</div>
+	</div>
+	
+	<div class="form-group"> 
+		<label for="inter" class=" col-xs-offset-3 col-xs-2 control-label"><span>Intermediate</span></label>
+			<div class=" col-xs-3">
+				  <input type="text" style="height:30px" class="form-control" name="inter" placeholder="Enter Inter percentage" required>
+			</div>
+	</div>
+	
+	<div class="form-group"> 
+		<label for="backlogs" class=" col-xs-offset-3 col-xs-2 control-label"><span>Backlogs</span></label>
+			<div class=" col-xs-3">
+				  <input type="text" style="height:30px" class="form-control" name="backlogs" placeholder="Enter number of backlogs" required>
+			</div>
+	</div>
+	
+	<div class="form-group"> 
+			<label for="mail" class=" col-xs-offset-3 col-xs-2 control-label"><span>Send Mail</span>
+			</label>
+			<label class="radio-inline" style="margin-left:20px" >
+					<input type="radio" name="mail" id="radiobutton" value="yes"><span>Yes</span>
+			</label>	
+			<label class="radio-inline" style="margin-left:20px" >
+				<input type="radio" name="mail" id="radiobutton" value="no"><span>No</span>
+			</label>
+	</div>
+	
+
+
+	<div class="form-group" style="margin-left:50px">
+		<div class="col-xs-offset-5 col-xs-2">
+		<input class="admin-button" type="submit" name="submit" value="Search" id="serch"> 
+		</div>
+	</div>
+
+
 
 </form>
+
+
+
 </div>
 
-</center>
 <%} %>
+<footer>
+	<p>	Kubo - Centralized Placement Web Application<br>
+		 E-mail:cvsrit13@gmail.com<br>
+		 &copy;All rights reserved, Department of Information Technology
+		 <br>2013-2017
+	 </p>
+</footer>
+	
 </body>
 </html>

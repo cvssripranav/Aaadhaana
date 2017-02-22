@@ -17,6 +17,7 @@ import javax.mail.MessagingException;
  import  javax.mail.internet.MimeBodyPart;
  import  javax.mail.internet.MimeMessage;
  import javax.mail.internet.MimeMultipart;
+import javax.servlet.http.HttpServletRequest;
 
 import com.realtimetpo.entities.Eligibility;
 import com.realtimetpo.entities.Mailing;
@@ -30,20 +31,21 @@ public class MailingDao {
 	Connection con = null;
     Statement stmt = null;
     ResultSet rs = null;
- 
+    HttpServletRequest request;
 	
 	
 	public MailingDao(){
     	try {
              con = ConnectionFactory.getConnection();
              stmt = con.createStatement();
+            
          }catch(Exception e){System.out.println(e);}
     }
     
-	public boolean sendMail(Mailing m,String percent)
+	public boolean sendMail(Mailing m,String percent,String id,String allDept,String cse,String ece,String eee,String it,String mech,String civil,String chem,int semester,int batch,float inter,float tenth,int backlogs)
 	{
 		
-	
+		boolean successful=false;
 	String host="smtp.gmail.com";  
 	//Mailing m = EntityFactory.getMails();
 	//final String username=mails.getUsername();//change accordingly  
@@ -83,12 +85,12 @@ public class MailingDao {
         	   List<Eligibility> userLists = new ArrayList<Eligibility>();
         	   //pass users obj to DAO ask him to check credentials
         	   EligibilityDao edaos = DAOFactory.getEligibleDao();
-        	   userLists = edaos.getEligibleList(percent);
+        	  userLists = edaos.getEligibleList(percent,allDept,cse,ece,eee,it,mech,civil,chem,semester,batch,tenth,inter,backlogs);
         	   
         	   for(Eligibility strs: userLists){
           
         	   
-        	   System.out.println("hii "+strs.getMailid());
+        	 //  System.out.println("hii "+strs.getMailid());
         	   
         	                 ////
          	               //  if(generate.equalsIgnoreCase("no")){
@@ -97,14 +99,15 @@ public class MailingDao {
          	                 
          	                	 count++;
          	                	 //System.out.println(resultSet.getString("mailid"));
-         	                	 message.addRecipient(Message.RecipientType.TO,new InternetAddress(strs.getMailid()));  
+         	             	 message.addRecipient(Message.RecipientType.TO,new InternetAddress("akil.c4@gmail.com"));  
          	                  message.setSubject(m.getSubject());  
          	                  message.setText(m.getText());  
          	                 messageBodyPart.setText(m.getText());
          	                 
-         	                 }
-        	   
+         	                 } 
+        	   successful=true;
            }catch (Exception e) {
+        	   successful=false;
          	            	  e.printStackTrace();
          	         	  System.out.println("<h2>Please try again.....</h2>");
          	           }
@@ -129,7 +132,7 @@ public class MailingDao {
 	       //  String filename = request.getParameter("link");
 	       // System.out.println(filename);
 	        try{  
-	        	 rs=stmt.executeQuery("select * from attachment");  
+	        	 rs=stmt.executeQuery("select * from attachment where id='"+id+"'");  
 	        	int count=0;
 	        	while(rs.next()){  
 	        	//out.print(rs.getClob(1)+"\n "); 
@@ -151,19 +154,29 @@ public class MailingDao {
 	        	//count++;
 	        	//out.print( '\n');
 	        	//System.out.print(count +" files attached '\n'");
-	        	} }catch (Exception e) {e.printStackTrace();}
+	        	} }catch (Exception e) {
+	        		
+	        		successful=false;
+	        		e.printStackTrace();}
 
 	     }
 	  //send the message  
 	   Transport.send(message);  
-
+ /*successful=true;*/
 	   System.out.println("message sent successfully...");  
 	 
-	   } catch (MessagingException e) {e.printStackTrace();} 
+	   } catch (MessagingException e) {
+		   
+		   successful=false;
+		   e.printStackTrace();} 
 	  try{  
-     	int i=stmt.executeUpdate("delete from attachment");
-	  }catch (Exception e) {e.printStackTrace();}
-	  return true;
+     	int i=stmt.executeUpdate("delete from attachment where id='"+id+"'");
+     	/*successful=true;*/
+	  }catch (Exception e) {
+		  successful=false;
+		  e.printStackTrace();}
+	  /*return true;*/
+	  return successful;
 	}
 	public boolean sendAlert(String rno,String department,String subject,String marks)
 	{

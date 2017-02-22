@@ -34,7 +34,7 @@ public class LoginController extends HttpServlet {
         user.setPassword(password);
         user.setName("na");
         user.setDepartment("na");
-        user.setUserid(0);
+        user.setUserid("0");
         //pass users obj to DAO ask him to check credentials
         UsersDAO udao = DAOFactory.getUsersDAO();
         user = udao.checkUserLogin(user);
@@ -57,16 +57,17 @@ public class LoginController extends HttpServlet {
             usession.setAttribute("department", user.getDepartment());
             usession.setAttribute("rno", user.getUserid());
             System.out.println(usession.getAttribute("rno"));
-            response.sendRedirect("StdentDetails.jsp?rno="+usession.getAttribute("username")+"&department="+usession.getAttribute("department"));
+            response.sendRedirect("KuboHome.jsp");
         }   
         else{
         	
         	 HttpSession usession = request.getSession(true);
              usession.setAttribute("username", username);
              usession.setAttribute("name", user.getName());
+             
              usession.setAttribute("department", user.getDepartment());
              
-             response.sendRedirect("trytpo.jsp");
+             response.sendRedirect("KuboHome.jsp");
         	
         }
     }

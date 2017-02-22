@@ -22,16 +22,21 @@ public class UsersDAO {
             stmt = con.createStatement();
         }catch(Exception e){System.out.println(e);}
     }
-    public boolean insertUser(Users user)
+    public boolean insertUser(Users user,StudentPercent student)
     {
         String qry = "insert into users "
                 + "(userid,username,password,name,mobile,dept) values "
-                + "('"+user.getUserid()+"','"+user.getUsername()+"','"+user.getPassword()+"',"
+                + "('"+user.getUserid()+"','"+user.getUserid()+"','"+user.getPassword()+"',"
                 + "'"+user.getName()+"','"+user.getMobile()+"','"+user.getDepartment()+"')";
+        String query="insert into studentinformation "
+                + "(roll,name,branch,phone,email,tenthpercent,twelfthpercent,fathersname,mothersname,tenthschool,twelthcollege,batch,semdone,address) values "
+                + "('"+student.getRollNo()+"','"+student.getName()+"','"+student.getDepartment()+"',"
+                + "'"+student.getPhone()+"','"+student.getEmailid()+"','"+student.getTenth()+"','"+student.getIntermediate()+"','"+student.getFather()+"','"+student.getMother()+"','"+student.getSchoolName()+"','"+student.getInterCollege()+"','"+student.getStudentBatch()+"','"+student.getSemesterCompleted()+"','"+student.getAddress()+"')";
         System.out.println(qry);
         try
         {
             stmt.executeUpdate(qry);
+            stmt.executeUpdate(query);
             
         }catch(Exception e){ System.out.println(e); return false;}
         return true;
@@ -47,7 +52,7 @@ public class UsersDAO {
             {
                 Users user = EntityFactory.getUser();
                 
-                user.setUserid(rs.getInt(1));
+                user.setUserid(rs.getString(1));
                 user.setUsername(rs.getString(2));
                 user.setPassword(rs.getString(3));
                 user.setName(rs.getString(4));
@@ -73,7 +78,7 @@ public class UsersDAO {
             {
                 user.setName(rs.getString(1));
                 user.setDepartment(rs.getString(2));
-                user.setUserid(rs.getInt(3));
+                user.setUserid(rs.getString(3));
             }
             
         }catch(Exception e){System.out.println(e.toString()); }

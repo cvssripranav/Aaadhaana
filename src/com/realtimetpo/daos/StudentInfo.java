@@ -30,7 +30,7 @@ public class StudentInfo {
 	    	 try
 		        {
 		        	//System.out.println(percent);
-		            rs = stmt.executeQuery("select  sroll,sname,sbranch ,sem1percent,sem2percent,sem3percent,percent from semmrks where sname='"+ rno +"'");
+		            rs = stmt.executeQuery("select  RollNo,Name,Department ,Sem1percent,Sem2percent,Sem3percent,Sem4percent,Sem5percent,Sem6percent,Sem7percent,Sem8percent,Aggregate,Backlogs from semmrks4 where RollNo='"+ rno +"'");
 	 
 		           // while(rs.next())
 		          //  {
@@ -69,20 +69,27 @@ System.out.println(columnCount);
 	        try
 	        {
 	        	//System.out.println(percent);
-	            rs = stmt.executeQuery("select  * from semmrks1 where sname='"+ rno +"'");
+	            rs = stmt.executeQuery("select  * from semmrks4 where RollNo='"+ rno +"'");
  
 	            while(rs.next())
 	            {
 	                StudentPercent student = EntityFactory.getStudent();
 	                
 	                //eligible.setId(rs.getInt(1));
-	                student.setRno(rs.getString("sroll"));
-	                student.setName(rs.getString("sname"));
-	                student.setBranch(rs.getString("sbranch"));
-	                student.setSem1percent(rs.getFloat("sem1percent"));
-	                student.setSem2percent(rs.getFloat("sem2percent"));
-	                student.setFinalpercent(rs.getFloat("percent"));
-	                student.setSem3percent(rs.getFloat("sem3percent"));
+	                student.setRollNo(rs.getString("RollNo"));
+	                student.setName(rs.getString("Name"));
+	                student.setDepartment(rs.getString("Department"));
+	                student.setSem1Percent(rs.getFloat("Sem1percent"));
+	                student.setSem2Percent(rs.getFloat("Sem2percent"));
+	              //  student.setFinalpercent(rs.getFloat("percent"));
+	                student.setSem3Percent(rs.getFloat("Sem3percent"));
+	                student.setSem4Percent(rs.getFloat("Sem4percent"));
+	                student.setSem5Percent(rs.getFloat("Sem5percent"));
+	                student.setSem6Percent(rs.getFloat("Sem6percent"));
+	                student.setSem7Percent(rs.getFloat("Sem7percent"));
+	                student.setSem8Percent(rs.getFloat("Sem8percent"));
+	                student.setAggregate(rs.getFloat("Aggregate"));
+	                student.setBacklogs(rs.getInt("Backlogs"));
 	              /*  student.setSem5percent(sem5percent);
 	                student.setSem6percent(sem6percent);
 	                student.setSem7percent(sem7percent);
@@ -107,15 +114,15 @@ System.out.println(columnCount);
 	        try
 	        {
 	        	//System.out.println(percent);
-	            rs = stmt.executeQuery("SELECT distinct m.mroll,st.sname,m.mscode,s.suname,s.susem,m.mmarks,s.sumarks as maxmarks FROM marks m,subjects s,student st where m.mscode=s.sucode  and m.mroll=st.sroll and sname='"+ rno +"'");
+	            rs = stmt.executeQuery("SELECT distinct m.mroll,st.name,m.mscode,s.suname,s.susem,m.mmarks,s.sumarks as maxmarks FROM marks m,subjects s,studentInformation st where m.mscode=s.sucode  and m.mroll=st.roll and roll='"+ rno +"'");
  
 	            while(rs.next())
 	            {
 	                StudentPercent students = EntityFactory.getStudent();
 	                
 	                //eligible.setId(rs.getInt(1));
-	                students.setRno(rs.getString("mroll"));
-	                students.setName(rs.getString("sname"));
+	                students.setRollNo(rs.getString("mroll"));
+	                students.setName(rs.getString("name"));
 	              /*  student.setBranch(rs.getString("sbranch"));
 	                student.setSem1percent(rs.getFloat("sem1percent"));
 	                student.setSem2percent(rs.getFloat("sem2percent"));
@@ -145,7 +152,7 @@ System.out.println(columnCount);
 	    	 try
 		        {
 		        	//System.out.println(percent);
-		            rs = stmt.executeQuery("SELECT distinct m.mroll,st.sname,m.mscode,s.suname,s.susem,m.mmarks,s.sumarks as maxmarks FROM marks m,subjects s,student st where m.mscode=s.sucode  and m.mroll=st.sroll and sname='"+ rno +"'");
+		            rs = stmt.executeQuery("SELECT distinct m.mroll,st.name,m.mscode,s.suname,s.susem,m.mmarks,s.sumarks as maxmarks FROM marks m,subjects s,studentInformation st where m.mscode=s.sucode  and m.mroll=st.roll and roll='"+ rno +"'");
 	 
 		           // while(rs.next())
 		          //  {

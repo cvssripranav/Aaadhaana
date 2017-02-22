@@ -1,6 +1,6 @@
 package com.realtimetpo.entities;
 public class Users {    
-    private int userid;
+    private String userid;
     private String username;
     private String password;
     private String name;
@@ -77,11 +77,11 @@ public class Users {
 		this.charity = charity;
 	}
 
-	public int getUserid() {
+	public String getUserid() {
         return userid;
     }
 
-    public void setUserid(int userid) {
+    public void setUserid(String userid) {
         this.userid = userid;
     }
 

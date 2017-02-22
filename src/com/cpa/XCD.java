@@ -110,7 +110,7 @@ public class XCD extends HttpServlet {
 			
 			Class.forName("com.mysql.jdbc.Driver");
 			String url = "jdbc:mysql://localhost:3306/test";
-            Connection con = DriverManager.getConnection(url,"root","admin");
+            Connection con = DriverManager.getConnection(url,"root","arjun@23");
 			 Statement stmt = con.createStatement();
 			
 			

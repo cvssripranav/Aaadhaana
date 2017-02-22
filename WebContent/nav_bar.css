@@ -1,0 +1,49 @@
+@font-face {font-family:basic;src: url(basictitlefont.ttf);}
+@font-face {font-family:ps;src: url(ProductSans-Regular.ttf);}
+@font-face {font-family:le;src: url(league-gothic.regular.ttf);}
+
+
+
+.navbar-brand img{
+
+margin-left:-10px;
+margin-top:-15px;
+height:75px;
+width:170px;
+
+}
+
+body{
+ padding-top:70px;
+
+}
+
+
+.navbar
+{
+background-color:#1e90ff;
+height:100px;
+font-family:ps;
+padding-top:20px;
+font-weight:bold;
+border-bottom:1px solid white;
+box-shadow:0 0 20px grey;
+    
+
+}
+
+#myNavbar>ul>li>a{
+
+height:100px;
+padding-top:30px;
+margin-top:-20px;
+margin-left:30px;
+color:white;
+font-family:ps;
+font-size:16px;
+}
+
+#myNavbar>ul>li>a:hover{
+background-color:white;
+color:#1e90ff;
+}

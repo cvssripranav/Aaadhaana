@@ -1,33 +1,61 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
  <html lang="en">
  <head>
 	<meta charset="utf-8">
-	<title>CPWA| Update</title>
+	<title>Kubo | QueryDB</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
- <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-
-<link rel="stylesheet" type="text/css" href="bootstrap/inbootstrap/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="bootstrap/inbootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="bootstrap/inbootstrap/css/bootstrap-theme.css">
-<link rel="stylesheet" type="text/css" href="bootstrap/inbootstrap/css/bootstrap.theme.css.map.css">
-<link rel="stylesheet" type="text/css" href="bootstrap/inbootstrap/css/bootstrap-theme.min.css">
 
 
 <link href="css/metro/blue/jtable.css" rel="stylesheet" type="text/css" />
 <link href="css/jquery-ui-1.10.3.custom.css" rel="stylesheet" type="text/css" />
 <!-- Include jTable script file. -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="js/jquery-1.8.2.js" type="text/javascript"></script>
 <script src="js/jquery-ui-1.10.3.custom.js" type="text/javascript"></script>
 <script src="js/jquery.jtable.js" type="text/javascript"></script>
 
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-<link rel="stylesheet" type="text/css" href="pdbindex.css">
-  <script>
+  
 
-  </script>
+<link rel="stylesheet" type="text/css" href="nav_bar.css">
+<link rel="stylesheet" type="text/css" href="XCD.css">
+<style>
+#queryButton {
+    display:block;
+    width:100px;
+	height:40px;
+	position:relative;
+	margin-left:20px;
+	margin-top:20px;
+    line-height:20px;
+    color:white;
+    text-align:center;
+    text-decoration:none;
+	text-shadow: 0 0 1px #1e90ff;
+    background-color: #1e90ff;
+    font-size:1em;
+   	font-family:ps;	
+	transition-duration:2s;
+	transition-property:height,width,color,text-shadow,font-size,text-shadow,background-color,line-height,box-shadow;
+	border:none;
+	
+}
+#queryButton :hover {
+	text-align:center;
+	text-decoration:none;
+	/*box-shadow: 0 0 5px black;*/	
+	color:#1e90ff;
+	background-color:white;
+	border:none;
+	
+}
+
+</style>
   
   <script type="text/javascript">
 
@@ -326,23 +354,95 @@
 </script>
 
  </head>
- 
+ <%@page import="java.util.*,java.io.*,javax.servlet.*,javax.servlet.http.*"%>
+<% response.setContentType("text/html");  
+//PrintWriter outs=response.getWriter(); 
+//RequestDispatcher rd = null;
+System.out.println(session.getId()); 
+response.setHeader("Cache-Control","no-cache");
+response.setHeader("Cache-Control","no-store");
+response.setHeader("Pragma","no-cache");
+response.setDateHeader ("Expires", 0);
+
+if(null==session.getAttribute("username"))
+{
+	PrintWriter outs=response.getWriter();
+	 request.getRequestDispatcher("login.jsp").include(request, response);  
+		//rd = request.getRequestDispatcher("registration.html");
+	    //rd.include(request, response);
+	 // response.sendRedirect(request.getContextPath() + "/index.jsp");
+		outs.println("<center><font color=red >Please login to continue</font></center>");
+		outs.close();
+	}
+else{ %>
  <body>
+ 
+ <nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <!--<div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="KuboHome.html"><img src="index_bg.png" alt="Brand" /></a>
+    </div>-->
+    <div class="collapse navbar-collapse" id="myNavbar">
+	
+      <ul class="nav navbar-nav">
+	  
+        <li><a href="KuboHome.jsp">Home</a></li>
+		  <!--<li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">EC Generator<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            <li><a href="events.html">Department Tree</a></li>
+            <li><a href="chemical-tech-events.html">CHEMICAL</a></li>
+			<li><a href="civil-tech-events.html">CIVIL</a></li>
+			<li><a href="cse-tech-events.html">CSE</a></li>
+			<li><a href="ece-tech-events.html">ECE</a></li>
+			<li><a href="eee-tech-events.html">EEE</a></li>
+			<li><a href="it-tech-events.html">IT</a></li>
+			<li><a href="mech-tech-events.html">MECH</a></li>
+			<li><a href="mba-tech-events.html">MBA</a></li>
+			<li><a href="pharm-tech-events.html">PHARMACY</a></li>
+          </ul>
+        </li>-->
+		<li><a href="trytpo.jsp">EC Generator</a></li>
+        <li ><a href="ExCD.jsp">Excel <i>to</i> Data</a></li>
+        <li><a href="#">Notification Issuer</a></li>
+		<li><a href="Querydb.jsp" style="background-color:white; color:#1e90ff">Query DB</a></li>
+		<li><a href="#">SQL Log</a></li>
+		<li><a href="#">Blog</a></li>
+		<li><a href="Logout" id="logout">Logout</a></li>
+		<!-- <li class="dropdown">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#">REGISTER<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            
+            <li><a href="events.html">Tech Zone</a></li>
+            <li><a href="common.html">Open Zone</a></li>
+			<li><a href="skill.html">Skill Zone </a></li>
+			
+		
+          </ul>-->
+        </li>
+      </ul>
+      
+    </div>
+  </div>
+</nav>
+ 
+ 
 	 <div class="container" id="con1">
-		<h3 id="admin-heading"> ANURAG GROUP OF INSTITUTIONS - PLACEMENT CELL</h3>
-		<div class="row" id="row1">
-			<div class="col-xs-7">
-			<img src="index_bg.png" id="adminimg"/>
-			</div>
-		</div>
+		<h3 id="XCDHeading"  style="margin-left:580px"> <span>Query Database</span></h3>
 		
 	
 	
 	
-					<form id="formquerydb" class="form-horizontal" onsubmit="return false" >
+					<form id="XCDform" class="form-horizontal" onsubmit="return false" >
 					
 					<div class="form-group">
-						<label for="tablename"class="col-xs-offset-3 col-xs-2 control-label">Table:</label>
+						<label for="tablename"class="col-xs-offset-3 col-xs-2 control-label"><span>Table</span></label>
 						<div class="col-xs-3">
 							<select class="form-control" name="tablename" id="mesa" style="height:30px;">
 							
@@ -353,7 +453,7 @@
 					
 					
 					<div class="form-group" id="queryJTable"> 
-						<label for="pkey" class=" col-xs-offset-3 col-xs-2 control-label">SRoll</label>
+						<label for="pkey" class=" col-xs-offset-3 col-xs-2 control-label"><span>Filter</span></label>
 					<div class=" col-xs-3">
 						  <input type="text" style="height:30px"  id="pk" class="form-control" name="pkey"   placeholder="Enter Pkey">
 					</div>
@@ -361,30 +461,42 @@
 					
 					
 					
-					<div class="form-group" style="margin-top:30px;margin-left:-40px;">
-				<div class="col-xs-offset-6 col-xs-2">
-				<input type="button" class="rounds-button" id="queryButton" value="Query"/>
+					<div class="form-group" style="margin-top:30px;margin-left:50px">
+				<div class="col-xs-offset-4 col-xs-2">
+				<input type="button" id="queryButton" value="Query"/>
 				</div>
 					</div>
 					
 					</form>
 					
-		<div style="width: 80%; margin-right: 10%; margin-top:-100px; margin-left: 10%; text-align: center;">
-	
+						</div>	
+					
+		
+<div class="container" id="con2">
+	<div style="width: 80%; margin-right: 10%; margin-left: 10%;margin-bottom: 5%; text-align: center;">
 	<div id="StudentTableContainer"></div>
 	</div>
 	
-	<div style="width: 80%; margin-right: 10%; margin-top:-100px; margin-left: 10%; text-align: center;">
+	<div style="width: 80%; margin-right: 10%;  margin-left: 10%;margin-bottom: 5%; text-align: center;">
 	
 	<div id="SubjectTableContainer"></div>
 	</div>
 	
-	<div style="width: 80%; margin-right: 10%; margin-left: 10%; margin-top:-100px; text-align: center;">
+	<div style="width: 80%; margin-right: 10%; margin-left: 10%; margin-bottom: 5%; text-align: center;">
 	
 	<div id="MarksTableContainer"></div>
 	</div>
 	
-	</div>	
+</div>
+	<%} %>
+	
+	<footer>
+		<p>	Kubo - Centralized Placement Web Application<br>
+			 E-mail:cvsrit13@gmail.com<br>
+			 &copy;All rights reserved, Department of Information Technology
+			 <br>2013-2017
+		 </p>
+	</footer>
 	
 </body>
 </html>	

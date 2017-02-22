@@ -1,0 +1,128 @@
+
+@font-face {font-family:basic;src: url(basictitlefont.ttf);}
+@font-face {font-family:ps;src: url(ProductSans-Regular.ttf);}
+@font-face {font-family:le;src: url(league-gothic.regular.ttf);}
+
+.navbar
+{
+background-color:#1e90ff;
+height:100px;
+font-family:ps;
+padding-top:20px;
+font-weight:bold;
+border-bottom:1px solid white;
+box-shadow:0 0 20px grey;
+    
+
+}
+
+#myNavbar>ul>li>a{
+
+height:100px;
+padding-top:30px;
+margin-top:-20px;
+margin-left:30px;
+color:white;
+font-family:ps;
+font-size:16px;
+}
+
+#myNavbar>ul>li>a:hover{
+background-color:white;
+color:#1e90ff;
+}
+
+.row{
+ height:600px;
+ margin-top:0px;
+ background-attachment: fixed;
+ background-position: top;
+ background-repeat: no-repeat;
+ background-size: cover;
+ }
+ 
+
+#home-row-1{
+	
+height:580px;
+margin-top:30px;
+
+}
+#home-row-2{
+	margin-top:0px;
+	background-image: url("pyramid.jpg");
+}
+
+.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 100%;
+	  height:580px;
+      margin: auto;
+	  
+  }
+  
+
+.carousel-caption h1 {
+margin-top:-290px;
+color:gold;
+font-family:basic;
+font-weight:bolder;
+}
+
+#home-row-4{
+
+margin-top:0px;
+background-image: url("webbg13.jpg");
+
+
+}
+
+
+#home-row-3{
+
+background-image: url("webbg7.jpg");
+
+
+}
+
+#home-row-2 h1{
+font-size:60px;
+color:gold;
+text-align:center;
+font-family:basic;
+font-weight:bolder;
+text-shadow: 0 0 2px gold;
+}
+
+
+#home-row-2 p{
+color:silver;
+font-size:20x;
+text-align:justify;
+font-family:basic;
+font-weight:bolder;
+}
+
+  
+ 
+
+footer{
+background-color:white;
+width:100%;
+padding-top:20px;
+height:150px;
+border-top:5px solid #109eff;
+border-bottom:5px solid #109eff;
+}
+
+p{
+font-size:20px;
+font-family:ps;
+color:#1e90ff;
+text-align:center;
+}
+
+
+
+
+
