@@ -15,13 +15,24 @@
 <script data-main="js/app" src="js/lib/require.js"></script>
 <title>Kubo | Eligibility Generator</title>
  <script>
- 
  function addInput()
  {
 	 <% String percents=request.getParameter("percent");%>
 var percent="<%=percents%>";
-	 
-		    $('#mail').load('inbox.jsp?percent='+percent);
+var all="<%=request.getParameter("all")%>";
+var cse="<%=request.getParameter("CSE")%>";
+var ece="<%=request.getParameter("ECE")%>";
+var eee="<%=request.getParameter("EEE")%>";
+var it="<%=request.getParameter("IT")%>";
+var mech="<%=request.getParameter("MECH")%>";
+var civ="<%=request.getParameter("CIVIL")%>";
+var chem="<%=request.getParameter("CHEM")%>";
+var sem="<%=request.getParameter("semester")%>";
+var batch="<%=request.getParameter("batch")%>";
+var backlogs="<%=request.getParameter("backlogs")%>";
+var tenth="<%=request.getParameter("tenth")%>";
+var inter="<%=request.getParameter("inter")%>";
+		    $('#mail').load('inbox.jsp?percent='+percent+'&allDept='+all+'&cse='+cse+'&ece='+ece+'&eee='+eee+'&it='+it+'&mech='+mech+'&civ='+civ+'&chem='+chem+'&semester='+sem+'&batch='+batch+'&backlogs='+backlogs+'&tenth='+tenth+'&inter='+inter);
 		
         
 }

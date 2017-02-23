@@ -15,15 +15,55 @@
 <link rel="stylesheet" type="text/css" href="XCD.css">
 
 <script>
-	$(document).ready(function() {  // When HTML DOM is ready it will execute the following function...
-    $.get("MesaNombres", function(responseJson) {    // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
-    	var $select = $("#mesa");                           // Locate HTML DOM element with ID "someselect".
+	$(document).ready(function() {// When HTML DOM is ready it will execute the following function...
+		$('#queryButton').on('click', function() {
+			
+			var subranch = $("#subranch").val();
+			var susem = $("#susem").val();
+			var subatch = $("#subatch").val();
+			
+			
+			var params = {
+				    subranch: "",
+				    susem: "",
+				    subatch: ""
+				};
+			params.subranch=subranch;
+			params.susem=susem;
+			params.subatch=subatch;
+			console.log(params.subatch);
+		
+			$.get("SemMarksEntry", $.param(params), function(responseJson) {
+				
+				 /*var $ul = $("<ul>").appendTo($("#subul")); // Create HTML <ul> element and append it to HTML DOM element with ID "somediv".
+			     $.each(responseJson, function(index, item) { // Iterate over the JSON array.
+			         $("<li>").text(item).appendTo($ul);      // Create HTML <li> element, set its text content with currently iterated item and append it to the <ul>.
+			     });*/
+				 
+			     $.each(responseJson, function(index, item) {
+			         
+			             $('<td>').text(item).appendTo('#subtr');
+			             
+			     });
+			     $(".suborderwarn").html("Please see that the subject marks are in the following order");
+			     
+				 
+			    // ...
+			   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+    	/*var $select = $("#mesa");                           // Locate HTML DOM element with ID "someselect".
         $select.find("option").remove();                          // Find all child elements with tag name "option" and remove them (just to prevent duplicate options when button is pressed again).
         $.each(responseJson, function(index, item) {               // Iterate over the JSON object.
          $("<option>").val(item).text(item).appendTo($select); // Create HTML <option> element, set its value with currently iterated key and its text content with currently iterated item and finally append it to the <select>.
-        });
+        });*/
     });
 });
+	});	
+	
+	
+	
+	
+	
+	
   </script>
   
   <style>
@@ -118,7 +158,7 @@ if(null==session.getAttribute("username"))
 	}
 else{ %>
 		
-		<form id="XCDform" class="form-horizontal" method="post" action="XCD" enctype="multipart/form-data">
+		<form id="XCDTform" class="form-horizontal" method="post" action="XCDTest" enctype="multipart/form-data">
 									
 				
 					<div class="form-group">
@@ -133,25 +173,52 @@ else{ %>
 					
 					
 					<div class="form-group">
-						<label for="tablename"class="col-xs-offset-3 col-xs-2 control-label"><span>Table</span></label>
+						<label for="subranch" class="col-xs-offset-3 col-xs-2 control-label"><span>Branch</span></label>
 						<div class="col-xs-3">
-							<select class="form-control" name="tablename" id="mesa" style="height:30px;">
-							
-								
-							</select>
+							<input type="text" style="height:30px" id="subranch" class="form-control" name="subranch" required/>
 						</div>
 					</div>
 					
+					<div class="form-group">
+						<label for="susem" class="col-xs-offset-3 col-xs-2 control-label"><span>Semester</span></label>
+						<div class="col-xs-3">
+							<input type="text" style="height:30px" id="susem" class="form-control" name="susem" required/>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="subatch" class="col-xs-offset-3 col-xs-2 control-label"><span>Batch</span></label>
+						<div class="col-xs-3">
+							<input type="text" style="height:30px" id="subatch" class="form-control" name="subatch" required/>
+						</div>
+					</div>
+					
+					
+					
 								
 			 <div class="form-group" style="margin-top:30px;margin-left:-40px;">
-				<div class="col-xs-offset-5 col-xs-2">
+				<div class="col-xs-offset-5">
 				<button type="submit" value="Upload" id="admin-button" >Submit</button>
 				</div>
-				
 			</div>
 		</form>
 		
-		<h2 id="weltxt">${requestScope.message}</h2>
+		<div class="col-xs-offset-5" style="margin-left:590px">
+				
+				<form onsubmit="return false"><button type="submit"  class="format" id="queryButton" >Get Format</button> </form>
+				</div>
+		
+		
+	</div>
+	
+	<div class="container" id="con2">
+	
+	<h2 id="weltxt" class="suborderwarn"></h2>
+	<h2 id="weltxt">${requestScope.message}</h2>
+	<table align="center" class="table table-striped" cellpadding="4" cellspacing="4"><tr id="subtr"></tr></table>
+	
+	<ul id="subul"></ul>
+	
 	</div>
 	
 

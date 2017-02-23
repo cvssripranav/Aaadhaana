@@ -15,7 +15,7 @@ color:white;
 
 #weltxt
 {
-font-size:20px;
+font-size:24px;
 color:#1e90ff;
 font-family:basic;
 font-weight:bold;
@@ -34,6 +34,18 @@ margin-top:20px;
 	
 	width:600px;
 	height:250px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:30px;
+	padding-top:20px;
+	box-shadow: 0 0 20px black;
+}
+
+#XCDTform{
+	
+	
+	width:600px;
+	height:300px;
 	margin-left:auto;
 	margin-right:auto;
 	margin-top:30px;
@@ -72,7 +84,7 @@ body{
 
 #con1{
 	margin-top:40px;
-	height:400px;
+	height:100%;
 	width:100%;
 	
 }
@@ -166,6 +178,35 @@ input[type="email"]::-webkit-input-placeholder {
 }
 
 
+.format {
+    display:block;
+    width:100px;
+	height:40px;
+	position:relative;
+	margin-left:20px;
+	margin-top:20px;
+    line-height:20px;
+    color:white;
+    text-align:center;
+    text-decoration:none;
+	text-shadow: 0 0 1px #1e90ff;
+    background-color: #1e90ff;
+    font-size:1em;
+   	font-family:ps;	
+	transition-duration:2s;
+	transition-property:height,width,color,text-shadow,font-size,text-shadow,background-color,line-height,box-shadow;
+	border:none;
+	
+}
+.format :hover {
+	text-align:center;
+	text-decoration:none;
+	/*box-shadow: 0 0 5px black;*/	
+	color:#1e90ff;
+	background-color:white;
+	border:none;
+	
+}
 
 
 

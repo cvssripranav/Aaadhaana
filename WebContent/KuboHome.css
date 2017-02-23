@@ -11,7 +11,7 @@ font-family:ps;
 padding-top:20px;
 font-weight:bold;
 border-bottom:1px solid white;
-box-shadow:0 0 20px grey;
+box-shadow:0 0 20px white;
     
 
 }
@@ -50,7 +50,7 @@ margin-top:30px;
 }
 #home-row-2{
 	margin-top:0px;
-	background-image: url("pyramid.jpg");
+	background-image: url("KuboMainBG.png");
 }
 
 .carousel-inner > .item > img,
@@ -72,7 +72,7 @@ font-weight:bolder;
 #home-row-4{
 
 margin-top:0px;
-background-image: url("webbg13.jpg");
+background-image: url("KuboMainBG.png");
 
 
 }
@@ -80,12 +80,13 @@ background-image: url("webbg13.jpg");
 
 #home-row-3{
 
-background-image: url("webbg7.jpg");
+background-image: url("KuboMainBG.png");
+padding:30px;
 
 
 }
 
-#home-row-2 h1{
+.rowhead{
 font-size:60px;
 color:gold;
 text-align:center;
@@ -101,6 +102,13 @@ font-size:20x;
 text-align:justify;
 font-family:basic;
 font-weight:bolder;
+text-shadow: 0 0 2px silver;
+}
+
+#home-row-2 ul
+{
+	text-shadow: 0 0 2px silver;
+	font-weight:bolder;
 }
 
   

@@ -11,7 +11,7 @@
 
 <link rel="stylesheet" type="text/css" href="nav_bar.css"/>
 <link rel="stylesheet" type="text/css" href="ECG.css"/> 
-
+<script data-main="js/app" src="js/lib/require.js"></script>
 <title>Kubo | Customized View</title>
 <style>
 table {
