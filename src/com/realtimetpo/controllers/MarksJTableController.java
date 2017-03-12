@@ -45,6 +45,12 @@ public class MarksJTableController extends HttpServlet {
 		
 		String action = request.getParameter("action");
 		String pkey = request.getParameter("pkey");
+		String id=request.getParameter("sid");
+		String subcode=request.getParameter("scode");
+		if(id==null)
+			id="%";
+		if(subcode==null)
+			subcode="%";
 		if(pkey==null)pkey="";
 		System.out.println(action);
 		System.out.println(pkey);
@@ -59,7 +65,7 @@ public class MarksJTableController extends HttpServlet {
 					
 					System.out.println("EnteredMarksPhase");
 					// Fetch Data from Student Table
-					studentList = dao.getAllStudents(pkey);
+					studentList = dao.getAllStudents(pkey,id,subcode);
 
 					// Return in the format required by jTable plugin
 					JSONROOT2.put("Result", "OK");
@@ -72,7 +78,7 @@ public class MarksJTableController extends HttpServlet {
 					
 				} else if (action.equals("markscreate") || action.equals("marksupdate")) {
 					MarksModel student = new MarksModel();
-					if (request.getParameter("sroll") != null) {
+					if (request.getParameter("mroll") != null) {
 						String mroll = request.getParameter("mroll");
 						student.setMroll(mroll);
 					}
@@ -83,14 +89,40 @@ public class MarksJTableController extends HttpServlet {
 					}
 					
 			
-						if (request.getParameter("mmarks") != null) {
-						int mmarks = Integer.parseInt(request.getParameter("mmarks"));
-						student.setMmarks(mmarks);
+						if (request.getParameter("mint") != null) {
+						int mint = Integer.parseInt(request.getParameter("mint"));
+						student.setMint(mint);
+					}
+						
+						if (request.getParameter("mext") != null) {
+							int mext = Integer.parseInt(request.getParameter("mext"));
+							student.setMext(mext);
+						}
+						
+						
+						if (request.getParameter("mtot") != null) {
+							int mtot = Integer.parseInt(request.getParameter("mtot"));
+							student.setMtot(mtot);
+						}
+						
+						if (request.getParameter("mcredit") != null) {
+							int mcredit = Integer.parseInt(request.getParameter("mcredit"));
+							student.setMcredit(mcredit);
+						}
+					
+					if (request.getParameter("mbranch") != null) {
+						String mbranch = request.getParameter("mbranch");
+						student.setMbranch(mbranch);
 					}
 					
-					if (request.getParameter("mpof") != null) {
-						String mpof = request.getParameter("mpof");
-						student.setMpof(mpof);
+					if (request.getParameter("msem") != null) {
+						int msem = Integer.parseInt(request.getParameter("msem"));
+						student.setMsem(msem);
+					}
+					
+					if (request.getParameter("mbatch") != null) {
+						int mbatch = Integer.parseInt(request.getParameter("mbatch"));
+						student.setMbatch(mbatch);
 					}
 
 					

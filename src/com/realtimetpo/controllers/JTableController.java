@@ -48,6 +48,7 @@ public class JTableController extends HttpServlet {
 			try {
 				if (action.equals("list")) {
 					// Fetch Data from Student Table
+					System.out.println("Entered StudentInformation Phase");
 					studentList = dao.getAllStudents(pkey);
 
 					// Return in the format required by jTable plugin
@@ -61,34 +62,76 @@ public class JTableController extends HttpServlet {
 					
 				} else if (action.equals("create") || action.equals("update")) {
 					JTableModel student = new JTableModel();
-					if (request.getParameter("sroll") != null) {
-						String sroll = request.getParameter("sroll");
-						student.setSRoll(sroll);
+					if (request.getParameter("roll") != null) {
+						String roll = request.getParameter("roll");
+						student.setRoll(roll);
 					}
 
-					if (request.getParameter("sname") != null) {
-						String sname = request.getParameter("sname");
-						student.setSName(sname);
+					if (request.getParameter("name") != null) {
+						String name = request.getParameter("name");
+						student.setName(name);
 					}
 					
-					if (request.getParameter("sbranch") != null) {
-						String sbranch = request.getParameter("sbranch");
-						student.setSBranch(sbranch);
+					if (request.getParameter("branch") != null) {
+						String branch = request.getParameter("branch");
+						student.setBranch(branch);
 					}
 					
-					if (request.getParameter("sphone") != null) {
-						String sphone = request.getParameter("sphone");
-						student.setSPhone(sphone);
+					if (request.getParameter("phone") != null) {
+						String phone = request.getParameter("phone");
+						student.setPhone(phone);
 					}
 					
-					if (request.getParameter("smail") != null) {
-						String smail = request.getParameter("smail");
-						student.setSMail(smail);
+					if (request.getParameter("email") != null) {
+						String email = request.getParameter("email");
+						student.setEmail(email);
 					}
+					
+					if (request.getParameter("fathersname") != null) {
+						String fathersname = request.getParameter("fathersname");
+						student.setFathersname(fathersname);
+					}
+					
+					if (request.getParameter("mothersname") != null) {
+						String mothersname = request.getParameter("mothersname");
+						student.setMothersname(mothersname);
+					}
+					
+					
+					if (request.getParameter("tenthpercent") != null) {
+						Float tenthpercent = Float.parseFloat(request.getParameter("tenthpercent"));
+						student.setTenthpercent(tenthpercent);
+					}
+					
+					if (request.getParameter("twelfthpercent") != null) {
+						Float twelfthpercent = Float.parseFloat(request.getParameter("twelfthpercent"));
+						student.setTwelfthpercent(twelfthpercent);
+					}
+					
+					if (request.getParameter("tenthschool") != null) {
+						String tenthschool = request.getParameter("tenthschool");
+						student.setTenthschool(tenthschool);
+					}
+					
+					if (request.getParameter("twelthcollege") != null) {
+						String twelthcollege = request.getParameter("twelthcollege");
+						student.setTwelthcollege(twelthcollege);
+					}
+					
 					
 					if (request.getParameter("semdone") != null) {
 						int semdone = Integer.parseInt(request.getParameter("semdone"));
 						student.setSemdone(semdone);
+					}
+					
+					if (request.getParameter("batch") != null) {
+						int batch = Integer.parseInt(request.getParameter("batch"));
+						student.setBatch(batch);
+					}
+					
+					if (request.getParameter("address") != null) {
+						String address = request.getParameter("address");
+						student.setAddress(address);
 					}
 
 					
@@ -109,9 +152,9 @@ public class JTableController extends HttpServlet {
 					response.getWriter().print(jsonArray);
 				} else if (action.equals("delete")) {
 					// Delete record
-					if (request.getParameter("sroll") != null) {
-						String sroll = request.getParameter("sroll");
-						dao.deleteStudent(sroll);
+					if (request.getParameter("roll") != null) {
+						String roll = request.getParameter("roll");
+						dao.deleteStudent(roll);
 
 						// Return in the format required by jTable plugin
 						JSONROOT.put("Result", "OK");

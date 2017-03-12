@@ -11,8 +11,8 @@
 
 <link rel="stylesheet" type="text/css" href="nav_bar.css"/>
 <link rel="stylesheet" type="text/css" href="KuboStudent.css"/> 
-<title>Kubo | My Marks</title>
- <script>
+<title>Kubo | Request Status</title>
+  <script>
  
  function addInput()
  {
@@ -29,10 +29,6 @@ table
   	{
   		background-color:white!important;
   	}
-  #con2
-  {
-
-  }	
   </style>
 
     <script data-main="js/app" src="js/lib/require.js"></script>
@@ -41,7 +37,6 @@ table
 
 </head>
 <body>
-
 
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -77,9 +72,9 @@ table
         </li>-->
 		
 		 <li><a href=<%= "\"StdentDetails.jsp?rno=" + request.getParameter("rno") + "&department="+request.getParameter("department")+"\"" %> id="studentdetails"> My Profile</a></li>
-        <li><a href="#" style="background-color:white; color:#1e90ff">My Marks</a></li>
+        <li><a href=<%= "\"StudentSemPerformance.jsp?rno=" + request.getParameter("rno") + "&department="+request.getParameter("department")+"\"" %> id="studentdetails">My Marks</a></li>
         <li><a href=<%= "\"Notify.jsp?rno=" + request.getParameter("rno") + "&department="+request.getParameter("department")+"\"" %>  id="semMarks">Notify</a></li>
-        <li><a href=<%= "\"RequestStatus.jsp?rno=" + request.getParameter("rno") + "&department="+request.getParameter("department")+"\"" %>  id="semMarks">Request Status</a></li>
+        <li><a href="#" style="background-color:white; color:#1e90ff" id="semMarks">Request Status</a></li>
 		<li><a href="#">Blog</a></li>
 		<li><a href="Logout" id="logout">Logout</a></li>
 		<li><a href="#" style="background-color:white; color:#1e90ff">Welcome  <%=" "+session.getAttribute("name")+"! "%></a></li>
@@ -103,13 +98,17 @@ table
 
 
 <div class="container" id="con2">
-<h3 id="admin-heading" class="col-xs-offset-3"> <span>Here<%=" "+session.getAttribute("name")+", "%> are your marks</span></h3>
+<h3 id="admin-heading" class="col-xs-offset-3"> <span>Here<%=" "+session.getAttribute("name")+", "%> are your pending requests</span></h3>
 <table align="center" cellpadding="4" cellspacing="4" id="studentsemester" class="table table-striped">
 <tr>
 
 </tr>
 <tr>
-
+<!--  <th><b>Name</b></th>
+<th><b>Role</b></th>
+<th><b>Branch</b></th>
+<th><b>Percentage</b></th>
+<th><b>Backlogs</b></th>-->
 
 
 </tr>
@@ -123,7 +122,7 @@ table
 <%@ page import ="com.realtimetpo.daos.*"%>
 <%@ page import ="com.realtimetpo.entities.*"%>
 <%@ page import=" com.realtimetpo.factories.*"%>
-
+<%@ page import=" com.realtimetpo.factories.EntityFactory"%>
 
 <%@ page import=" java.sql.* " %>
 <%
@@ -148,74 +147,56 @@ if(null==session.getAttribute("username"))
 	}
 else{
 String rno = request.getParameter("rno");
-System.out.println("sem"+rno);
-String department=request.getParameter("department");%>
-<%-- <a href=<%= "\"StdentDetails.jsp?rno=" + rno + "&department="+department+"\"" %> id="studentdetails">CompleteDetails</a>
-<a href=<%= "\"Notify.jsp?rno=" + rno + "&department="+department+"\"" %>  id="semMarks">Notify</a>
- --%><!-- //String filename = request.getParameter("filename");
-//String generate=request.getParameter("generate"); 
+String department=request.getParameter("department");
 
+//String filename = request.getParameter("filename");
+//String generate=request.getParameter("generate"); 
  //supply this uname and pwd to Users
- --> <%
-StudentPercent student = EntityFactory.getStudent();
+Status student = EntityFactory.getStatus();
 //   eligible.setPercent(percent);
  //user.setPassword(password);
  //user.setName("na");
-List<StudentPercent> semMarksList = new ArrayList<StudentPercent>();
-List<String> semColumnList = new ArrayList<String>();
+List<Status> status = new ArrayList<Status>();
+List<String> columnList = new ArrayList<String>();
  //pass users obj to DAO ask him to check credentials
  StudentInfo sdao = DAOFactory.getStudentInfo();
- semMarksList = sdao.getSemMarksList(rno);
- semColumnList=sdao.getSemMarksColumns(rno);
+ status = sdao.getRequestStatus(rno);
+ columnList=sdao.getStatusColumns(rno);
  int count=0;
  %>
  <tr>
  <%
- for(String str1: semColumnList){
+ for(String str1: columnList){
 	 count++;
 	 %>
 	<th><%= str1 %>
 <%
 }
- System.out.println("hELLO");
  %>
  </th> 
  </tr><%
- Iterator it = semMarksList.iterator();
- int sem=1;
- int total=0;
- int maxtotal=0;
- int i=0;
- for(StudentPercent strs: semMarksList){
-	 ++i;
-	
-	 if(strs.getSemester()==sem+1  ){
-		 //total=total-strs.getMarksObtained();
-		 %>
-		 <tr><td>&nbsp;</td><td>&nbsp;</td><td>Total</td><td>&nbsp;</td><td>&nbsp;</td><td><%=total %></td><td><%=maxtotal %></td></tr>
-		 <%
-		 sem=sem+1;
-		 total=0;
-		 maxtotal=0;
-	 }
-	 total=total+strs.getMarksObtained();
-	 maxtotal=maxtotal+strs.getMaxMarks();
+ for(Status str: status){
 	%>
-		<tr><td><%= strs.getRollNo() %></td><td><%= strs.getName()%> 
-		</td><td><%= strs.getSubjectCode()%></td><td><%= strs.getSubjectName() %></td><td><%= strs.getSemester()%></td>
-		<td><%= strs.getMarksObtained() %></td><td><%= strs.getMaxMarks()%></td>
+		<tr><td><%= str.getrollId() %></td><td><%= str.getName()%> 
+		</td><td><%= str.getBranch() %></td><td><%= str.getSubjects() %></td>
+		<td><%= str.getStatus() %></td><td><%= str.getBatch() %></td>
 		</tr>
 
-<%
-if(i==semMarksList.size()){
-	%>
-	<tr><td>&nbsp;</td><td>&nbsp;</td><td>Total</td><td>&nbsp;</td><td>&nbsp;</td><td><%=total %></td><td><%=maxtotal %></td></tr>
 <%	
+System.out.println(str.getrollId());
 }
+ /*if(generate.equalsIgnoreCase("yes"))
+ {
+	 edao.generateEligibleList(percent, filename);
+ }*/
+%>  
+</table>
+ <%
+
+System.out.println("hello"+session.getAttribute("username"));
 
 }
-} 
-%>  
+%>
  </table>
  </div>
   <footer>

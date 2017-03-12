@@ -86,7 +86,7 @@ var inter="<%=request.getParameter("inter")%>";
         </li>-->
 		<li><a href="trytpo.jsp" style="background-color:white; color:#1e90ff">EC Generator</a></li>
         <li><a href="ExCD.jsp">Excel <i>to</i> Data</a></li>
-        <li><a href="#">Notification Issuer</a></li>
+        <li><a href="requests.jsp">Student Requests</a></li>
 		<li><a href="Querydb.jsp">Query DB</a></li>
 		<li><a href="#">SQL Log</a></li>
 		<li><a href="#">Blog</a></li>
@@ -248,7 +248,7 @@ if(request.getParameter("mail").equalsIgnoreCase("yes"))
 </div>
 
 <footer>
-	<p>	Kubo - Centralized Placement Web Application<br>
+	<p>	Anurag Group of Institutions- Centralized Placement Web Application<br>
 		 E-mail:cvsrit13@gmail.com<br>
 		 &copy;All rights reserved, Department of Information Technology
 		 <br>2013-2017

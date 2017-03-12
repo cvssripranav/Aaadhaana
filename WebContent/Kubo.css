@@ -46,7 +46,7 @@ body{
 	
 	/*background:repeating-linear-gradient(to right,#222,#222 2px,#fff 2px,#fff 4px);
 	margin-right:0px;*/
-	background-image: url("KuboLoginBG2.jpg");
+	background-image: url("KuboMainBG.png");
     Background-attachment: fixed;
     background-position: top;
     background-repeat: no-repeat;

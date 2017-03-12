@@ -109,7 +109,7 @@ public class XCD extends HttpServlet {
       try{
 			
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/cpa_test";
+			String url = "jdbc:mysql://localhost:3306/test";
             Connection con = DriverManager.getConnection(url,"root","arjun@23");
 			 Statement stmt = con.createStatement();
 			
@@ -151,6 +151,7 @@ public class XCD extends HttpServlet {
 						int b = stmt.executeUpdate(sql);
 						sql="";
 						   if(b<0)System.out.println("Epic Fail!");
+						   
 						}
 						else 
 						{cvalue=cvalue+value+",";}
@@ -167,12 +168,12 @@ public class XCD extends HttpServlet {
 		  
 	  }
 	 
-	  
-	   }catch(Exception d){d.printStackTrace();}
+	   request.setAttribute("message", "Upload has been done successfully!");
+	   }catch(Exception d){d.printStackTrace(); request.setAttribute("message", "There was an error: ");}
       
-            request.setAttribute("message", "Upload has been done successfully!");
+         
         } catch (Exception ex) {
-            request.setAttribute("message", "There was an error: " + ex.getMessage());
+        	request.setAttribute("message", "There was an error: " + ex.getMessage());
         }
         getServletContext().getRequestDispatcher("/ExCD.jsp").forward(request, response);
 	}

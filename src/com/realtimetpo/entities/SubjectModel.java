@@ -4,9 +4,8 @@ public class SubjectModel {
 
 private String sucode;
 private String suname;
-private String subranch;
-private int susem;
-private int sumarks;
+private int suext;
+private int sutot;
 
 
 
@@ -18,17 +17,13 @@ public String getSuname() {
 	return suname;
 }
 
-public String getSubranch() {
-	return subranch;
+
+public int getSuext() {
+	return suext;
 }
 
-
-public int getSusem() {
-	return susem;
-}
-
-public int getSumarks() {
-	return sumarks;
+public int getSutot() {
+	return sutot;
 }
 
 
@@ -44,20 +39,17 @@ public void setSuname(String suname) {
 	this.suname = suname;
 	System.out.println(suname);
 }
-public void setSubranch(String subranch) {
-	this.subranch = subranch;
-	System.out.println(subranch);
+
+
+
+public void setSuext(int suext) {
+	this.suext= suext;
+	System.out.println(suext);
 }
 
-
-public void setSusem(int susem) {
-	this.susem= susem;
-	System.out.println(susem);
-}
-
-public void setSumarks(int sumarks) {
-	this.sumarks= sumarks;
-	System.out.println(sumarks);
+public void setSutot(int sutot) {
+	this.sutot= sutot;
+	System.out.println(sutot);
 }
 
 

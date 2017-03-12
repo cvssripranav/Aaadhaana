@@ -61,7 +61,7 @@
 
   
 	$(document).ready(function() {
-				
+		$("#marks").hide(1000);
 		$.get("MesaNombres", function(responseJson) {    // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
 	    	var $select = $("#mesa");                           // Locate HTML DOM element with ID "someselect".
 	                               // Find all child elements with tag name "option" and remove them (just to prevent duplicate options when button is pressed again).
@@ -76,7 +76,7 @@
 	     	
 		var opt2 =  $("#mesa option:selected").val();
 		
-		if(opt2=='student')
+		if(opt2=='studentinformation')
 			{
 			$('#StudentTableContainer').jtable('load', {
 				pkey: $('#pk').val()
@@ -88,7 +88,7 @@
 		else
 			{
 			
-			if(opt2=='marks')
+			if(opt2=='marksformat')
 			{
 				$('#MarksTableContainer').jtable('load', {
 					pkey: $('#pk').val()
@@ -126,38 +126,92 @@
 			
 			
 			var studentf={
-					sroll : {
-						title : 'sroll',
-						width : '20%',
+					roll : {
+						title : 'roll',
+						width : '5%',
 						key : true,
 						list : true,
 						edit : false,
 						create : true
 					},
-					sname : {
-						title : 'sname',
-						width : '20%',
+					name : {
+						title : 'name',
+						width : '5%',
 						edit : true
 					},
-					sbranch : {
-						title : 'sbranch',
-						width : '10%',
+					branch : {
+						title : 'branch',
+						width : '2%',
 						edit : true
 					},
-					sphone : {
-						title : 'sphone',
-						width : '20%',
+					phone : {
+						title : 'phone',
+						width : '5%',
 						edit : true
 					},
 					
-					smail : {
-						title : 'smail',
-						width : '20%',
+					email : {
+						title : 'email',
+						width : '5%',
 						edit : true
 					},
+					
+					fathersname : {
+						title : 'fahtersname',
+						width : '5%',
+						edit : true
+					},
+					
+					mothersname : {
+						title : 'mothersname',
+						width : '5%',
+						edit : true
+					},
+					
+					tenthpercent : {
+						title : 'tenthpercent',
+						width : '2%',
+						edit : true
+					},
+					
+					twelfthpercent : {
+						title : 'twelfthpercent',
+						width : '2%',
+						edit : true
+					},
+					
+					
+					tenthschool : {
+						title : 'tenthschool',
+						width : '5%',
+						edit : true
+					},
+					
+					
+					twelthcollege: {
+						title : 'twelthcollege',
+						width : '5%',
+						edit : true
+					},
+					
+								
+					
 					
 					semdone: {
 						title : 'semdone',
+						width : '2%',
+						edit : true
+					},
+					
+					batch: {
+						title : 'batch',
+						width : '2%',
+						edit : true
+					},
+					
+					
+					address: {
+						title : 'Address',
 						width : '10%',
 						edit : true
 					}
@@ -175,7 +229,7 @@
 					
 					mroll : {
 						title : 'Roll',
-						width : '25%',
+						width : '10%',
 						key : true,
 						list : true,
 						edit : false,
@@ -183,17 +237,49 @@
 					},
 					mscode : {
 						title : 'Sub Code',
-						width : '25%',
+						width : '10%',
 						edit : true
 					},
-					mmarks : {
-						title : 'Marks',
-						width : '25%',
+					mint : {
+						title : 'Internal Marks',
+						width : '5%',
 						edit : true
 					},
-					mpof : {
-						title : 'Pass/ Fail',
-						width : '25%',
+					mext : {
+						title : 'Ext Marks',
+						width : '5%',
+						edit : true
+					},
+									
+					
+					mtot : {
+						title : 'Total Marks',
+						width : '5%',
+						edit : true
+					},
+					
+					mcredit : {
+						title : 'Credits',
+						width : '5%',
+						edit : true
+					},
+					
+					mbranch : {
+						title : 'Branch',
+						width : '10%',
+						edit : true
+					},
+					
+					msem : {
+						title : 'Semester',
+						width : '10%',
+						edit : true
+					},
+					
+					
+					mbatch : {
+						title : 'Batch',
+						width : '10%',
 						edit : true
 					}
 					
@@ -220,20 +306,16 @@
 						width : '25%',
 						edit : true
 					},
-					subranch : {
-						title : 'Sub Branch',
+					
+					suext : {
+						title : 'Sub Ext Marks',
 						width : '25%',
 						edit : true
 					},
-					susem : {
-						title : 'Sub Sem',
-						width : '5%',
-						edit : true
-					},
 					
-					sumarks : {
-						title : 'Sub Marks',
-						width : '5%',
+					sutot : {
+						title : 'Sub Tot Marks',
+						width : '25%',
 						edit : true
 					}
 					
@@ -249,9 +331,9 @@
 					
 			}
 			
-			if(opt==='marks')
+			if(opt==='marksformat')
 				{
-				console.log("marks"); 
+				console.log("marksformat"); 
 				$fields = marksf;
 				$actions = marksa; 
 				
@@ -259,7 +341,7 @@
 				 $("#StudentTableContainer").hide(1000);
 				$("#SubjectTableContainer").hide(1000);
 				 $("#MarksTableContainer").show(1000);
-				
+				 $("#marks").show(1000);
 			    
 				$('#MarksTableContainer').jtable({
 					title : 'Dyanamic Table',
@@ -271,15 +353,21 @@
 				
 								
 				$('#MarksTableContainer').jtable('reload');
-			
+				 $('#searching').click( function() {
+						$('#MarksTableContainer').jtable('load', {
+							sid: $('#sid').val(),
+							scode: $('#scode').val()
+							
+						});
+				 });
 				
 				}
 			else 
 				{
 				
-					if(opt=='student')
+					if(opt=='studentinformation')
 					{
-					console.log("student"); 
+					console.log("studentinformation"); 
 					$fields = studentf;
 					$actions = studenta; 
 					
@@ -288,7 +376,7 @@
 					$("#MarksTableContainer").hide(1000);
 					$("#SubjectTableContainer").hide(1000);
 					 $("#StudentTableContainer").show(1000);
-					
+					 $("#marks").hide(1000);
 					$('#StudentTableContainer').jtable({
 						title : 'Dyanamic Table',
 						actions : $actions,
@@ -306,7 +394,7 @@
 					else
 						{
 						
-						console.log("student"); 
+						console.log("subjectsformat"); 
 						$fields = subjectsf;
 						$actions = subjectsa; 
 						
@@ -315,6 +403,7 @@
 						$("#MarksTableContainer").hide(1000);
 						$("#StudentTableContainer").hide(1000);
 						 $("#SubjectTableContainer").show(1000);
+						 $("#marks").hide(1000);
 						
 						$('#SubjectTableContainer').jtable({
 							title : 'Dyanamic Table',
@@ -354,7 +443,7 @@
 </script>
 
  </head>
- <%@page import="java.util.*,java.io.*,javax.servlet.*,javax.servlet.http.*"%>
+ <%-- <%@page import="java.util.*,java.io.*,javax.servlet.*,javax.servlet.http.*"%>
 <% response.setContentType("text/html");  
 //PrintWriter outs=response.getWriter(); 
 //RequestDispatcher rd = null;
@@ -375,7 +464,7 @@ if(null==session.getAttribute("username"))
 		outs.close();
 	}
 else{ %>
- <body>
+ --%> <body>
  
  <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
@@ -410,7 +499,7 @@ else{ %>
         </li>-->
 		<li><a href="trytpo.jsp">EC Generator</a></li>
         <li ><a href="ExCD.jsp">Excel <i>to</i> Data</a></li>
-        <li><a href="#">Notification Issuer</a></li>
+        <li><a href="requests.jsp">Student Requests</a></li>
 		<li><a href="Querydb.jsp" style="background-color:white; color:#1e90ff">Query DB</a></li>
 		<li><a href="#">SQL Log</a></li>
 		<li><a href="#">Blog</a></li>
@@ -451,7 +540,6 @@ else{ %>
 						</div>
 					</div>
 					
-					
 					<div class="form-group" id="queryJTable"> 
 						<label for="pkey" class=" col-xs-offset-3 col-xs-2 control-label"><span>Filter</span></label>
 					<div class=" col-xs-3">
@@ -473,25 +561,32 @@ else{ %>
 					
 		
 <div class="container" id="con2">
-	<div style="width: 80%; margin-right: 10%; margin-left: 10%;margin-bottom: 5%; text-align: center;">
-	<div id="StudentTableContainer"></div>
+	<div style="width: 100%; margin-right: 0%; margin-left: 0%;margin-bottom: 5%; text-align: center;">
+	<div id="StudentTableContainer">
+	</div>
 	</div>
 	
 	<div style="width: 80%; margin-right: 10%;  margin-left: 10%;margin-bottom: 5%; text-align: center;">
 	
-	<div id="SubjectTableContainer"></div>
+	<div id="SubjectTableContainer">
+		</div>
 	</div>
 	
 	<div style="width: 80%; margin-right: 10%; margin-left: 10%; margin-bottom: 5%; text-align: center;">
-	
-	<div id="MarksTableContainer"></div>
+					
+	<div id="MarksTableContainer"><div id="marks">
+					<form>id:<input type="text" name="sid" id="sid">&emsp;
+					Subject:<input type="text" name="scode" id="scode">&emsp;<input type="button"  id="searching" value="search"/></form>
+					
+		</div>	
+	</div>
 	</div>
 	
 </div>
-	<%} %>
+	<%-- <%} %> --%>
 	
 	<footer>
-		<p>	Kubo - Centralized Placement Web Application<br>
+		<p>	Anurag Group of Institutions- Centralized Placement Web Application<br>
 			 E-mail:cvsrit13@gmail.com<br>
 			 &copy;All rights reserved, Department of Information Technology
 			 <br>2013-2017

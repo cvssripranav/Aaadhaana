@@ -12,7 +12,7 @@ static
     {
         Class.forName("com.mysql.jdbc.Driver"); 
         con = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/test", 
+                    "jdbc:mysql://localhost:3306/test1", 
                     "root", "arjun@23");
             
     }catch(Exception e){System.out.println(e);}

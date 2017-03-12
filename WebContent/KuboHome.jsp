@@ -71,7 +71,7 @@ response.setDateHeader ("Expires", 0);
 				  
 				<li><a href="trytpo.jsp">EC Generator</a></li>
 		        <li><a href="ExCD.jsp">Excel <i>to</i> Data</a></li>
-		        <li><a href="#">Notification Issuer</a></li>
+		        <li><a href="requests.jsp">Student Requests</a></li>
 				<li><a href="Querydb.jsp">Query DB</a></li>
 				<li><a href="#">SQL Log</a></li>
 				<li><a href="#">Blog</a></li>
@@ -99,6 +99,7 @@ response.setDateHeader ("Expires", 0);
 				<li><a href=<%= "\"StdentDetails.jsp?rno="+session.getAttribute("username")+"&department="+session.getAttribute("department")+"\"" %>>My Profile</a></li>
 				<li><a href=<%= "\"StudentSemPerformance.jsp?rno="+session.getAttribute("username")+"&department="+session.getAttribute("department")+"\"" %>>My Marks</a></li>
 		        <li><a href=<%= "\"Notify.jsp?rno="+session.getAttribute("username")+"&department="+session.getAttribute("department")+"\"" %>>Notify</a></li>
+		        <li><a href=<%= "\"RequestStatus.jsp?rno=" + session.getAttribute("username") + "&department="+session.getAttribute("department")+"\"" %>  id="semMarks">Request Status</a></li>
 				<li><a href="#">Blog</a></li>
 				<li><a href="Logout" id="logout">Logout</a></li>
 				<li><a href="#" style="background-color:white; color:#1e90ff">Welcome  <%=" "+session.getAttribute("name")+"! "%></a></li>
@@ -303,7 +304,7 @@ response.setDateHeader ("Expires", 0);
 
 </div>
 	<footer>
-		<p>	Kubo - Centralized Placement Web Application<br>
+		<p>	Anurag Group of Institutions- Centralized Placement Web Application<br>
 			 E-mail:cvsrit13@gmail.com<br>
 			 &copy;All rights reserved, Department of Information Technology
 			 <br>2013-2017

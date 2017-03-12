@@ -71,6 +71,7 @@ table
 		<li><a href="#" style="background-color:white; color:#1e90ff"> My Profile</a></li>
 		 <li><a href=<%= "\"StudentSemPerformance.jsp?rno=" + request.getParameter("rno") + "&department="+request.getParameter("department")+"\"" %> id="studentdetails">My Marks</a></li>
         <li><a href=<%= "\"Notify.jsp?rno=" + request.getParameter("rno") + "&department="+request.getParameter("department")+"\"" %>  id="semMarks">Notify</a></li>
+        <li><a href=<%= "\"RequestStatus.jsp?rno=" + request.getParameter("rno") + "&department="+request.getParameter("department")+"\"" %>  id="semMarks">Request Status</a></li>
 		<li><a href="#">Blog</a></li>
 		<li><a href="Logout" id="logout">Logout</a></li>
 		<li><a href="#" style="background-color:white; color:#1e90ff">Welcome  <%=" "+session.getAttribute("name")+"! "%></a></li>
@@ -190,7 +191,7 @@ System.out.println(str.getRollNo());
 
  </div>
  <footer>
-	<p>	Kubo - Centralized Placement Web Application<br>
+	<p>	Anurag Group of Institutions- Centralized Placement Web Application<br>
 		 E-mail:cvsrit13@gmail.com<br>
 		 &copy;All rights reserved, Department of Information Technology
 		 <br>2013-2017

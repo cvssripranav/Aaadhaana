@@ -25,15 +25,15 @@ public class SubjectCRUD {
 	}
 
 	public void addStudent(SubjectModel student) {
-		String insertQuery = "INSERT INTO subjects(sucode, suname , subranch, susem, sumarks" +
-				") VALUES (?,?,?,?,?,?)";
+		String insertQuery = "INSERT INTO subjectsformat(sucode, suname , suext, sutot" +
+				") VALUES (?,?,?,?)";
 		try {
 			pStmt = dbConnection.prepareStatement(insertQuery);
 			pStmt.setString(1, student.getSucode());
 			pStmt.setString(2, student.getSuname());
-			pStmt.setString(3, student.getSubranch());
-			pStmt.setInt(5, student.getSusem());
-			pStmt.setInt(6, student.getSumarks());
+			
+			pStmt.setInt(3, student.getSuext());
+			pStmt.setInt(4, student.getSutot());
 			
 			
 			pStmt.executeUpdate();
@@ -43,7 +43,7 @@ public class SubjectCRUD {
 	}
 
 	public void deleteStudent(String sucode) {
-		String deleteQuery = "DELETE FROM subjects WHERE sucode = ?";
+		String deleteQuery = "DELETE FROM subjectsformat WHERE sucode = ?";
 		try {
 			pStmt = dbConnection.prepareStatement(deleteQuery);
 			pStmt.setString(1, sucode);
@@ -54,15 +54,15 @@ public class SubjectCRUD {
 	}
 
 	public void updateStudent(SubjectModel student)  {
-		String updateQuery = "UPDATE subjects SET sumarks= ?, susem = ?, suname = ?" +
-				" WHERE sucode = ? and subranch = ?";
+		String updateQuery = "UPDATE subjectsformat SET suext= ?, sustot = ?, suname = ?" +
+				" WHERE sucode = ? ";
 		try {
 			pStmt = dbConnection.prepareStatement(updateQuery);		
-			pStmt.setInt(1, student.getSumarks());
-			pStmt.setInt(2, student.getSusem());
+			pStmt.setInt(1, student.getSuext());
+			pStmt.setInt(2, student.getSutot());
 			pStmt.setString(3, student.getSuname());
-			pStmt.setString(3, student.getSucode());
-			pStmt.setString(4, student.getSubranch());
+			pStmt.setString(4, student.getSucode());
+			
 			
 			
 			pStmt.executeUpdate();
@@ -78,9 +78,9 @@ public class SubjectCRUD {
 		String query;
 		List<SubjectModel> students = new ArrayList<SubjectModel>();
 		if(passedpkey=="")
-		query = "SELECT distinct * FROM subjects ORDER BY sucode";
+		query = "SELECT distinct * FROM subjectsformat ORDER BY sucode";
 		else
-			query="SELECT * FROM subjects where sucode = '"+passedpkey+"'";
+			query="SELECT * FROM subjectsformat where sucode = '"+passedpkey+"'";
 		System.out.println(query);
 		
 		try {
@@ -91,9 +91,9 @@ public class SubjectCRUD {
 
 				student.setSucode(rs.getString("sucode"));
 				student.setSuname(rs.getString("suname"));
-				student.setSubranch(rs.getString("subranch"));
-				student.setSusem(rs.getInt("susem"));
-				student.setSumarks(rs.getInt("sumarks"));
+				
+				student.setSuext(rs.getInt("suext"));
+				student.setSutot(rs.getInt("sutot"));
 			
 				
 				

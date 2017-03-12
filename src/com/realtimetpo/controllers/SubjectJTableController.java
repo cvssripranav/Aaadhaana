@@ -78,21 +78,15 @@ public class SubjectJTableController extends HttpServlet {
 						student.setSuname(suname);
 					}
 					
-					
-					if (request.getParameter("subranch") != null) {
-						String subranch = request.getParameter("subranch");
-						student.setSubranch(subranch);
-					}
-
 			
-						if (request.getParameter("susem") != null) {
-						int susem = Integer.parseInt(request.getParameter("susem"));
-						student.setSusem(susem);
+						if (request.getParameter("suext") != null) {
+						int suext = Integer.parseInt(request.getParameter("suext"));
+						student.setSuext(suext);
 					}
 						
-						if (request.getParameter("sumarks") != null) {
-							int sumarks = Integer.parseInt(request.getParameter("sumarks"));
-							student.setSumarks(sumarks);
+						if (request.getParameter("sutot") != null) {
+							int sutot = Integer.parseInt(request.getParameter("sutot"));
+							student.setSutot(sutot);
 						}
 					
 					

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.realtimetpo.factories.*;
 import com.realtimetpo.entities.Eligibility;
+import com.realtimetpo.entities.Status;
 import com.realtimetpo.entities.StudentPercent;
 
 
@@ -30,7 +31,7 @@ public class StudentInfo {
 	    	 try
 		        {
 		        	//System.out.println(percent);
-		            rs = stmt.executeQuery("select  RollNo,Name,Department ,Sem1percent,Sem2percent,Sem3percent,Sem4percent,Sem5percent,Sem6percent,Sem7percent,Sem8percent,Aggregate,Backlogs from semmrks4 where RollNo='"+ rno +"'");
+		            rs = stmt.executeQuery("select  RollNo,Name,Department ,Sem1percent,Sem2percent,Sem3percent,Sem4percent,Sem5percent,Sem6percent,Sem7percent,Sem8percent,Aggregate,Backlogs from semwisemarks where RollNo='"+ rno +"'");
 	 
 		           // while(rs.next())
 		          //  {
@@ -59,6 +60,40 @@ System.out.println(columnCount);
 
 	    }
 	    
+	    public List<String> getStatusColumns(String rno)
+	    {
+	    	List<String> columnList = new ArrayList<String>();
+	    	 try
+		        {
+		        	//System.out.println(percent);
+		            rs = stmt.executeQuery("select * from test1.notify where roll='"+ rno +"'");
+	 
+		           // while(rs.next())
+		          //  {
+		                //Eligibility eligibles = EntityFactory.getEligible();
+		                
+		                //ResultSet rs = stmt.executeQuery("SELECT a, b, c FROM TABLE2");
+		                ResultSetMetaData rsmd = rs.getMetaData();
+		                int columnCount = rsmd.getColumnCount();
+System.out.println(columnCount);
+		                // The column count starts from 1
+		                for (int i = 1; i <= columnCount; i++ ) {
+		                  String name = rsmd.getColumnName(i);
+		                  System.out.println(name);
+		                  // Do stuff with name
+		                 // eligibles.setColumn(name);
+		                  columnList.add(name);
+		                 // System.out.println(columnList.get(i));
+		                } 
+		                
+		           // }
+		            System.out.println("outs  "+columnList.size());
+		            
+		        }catch(Exception e){System.out.println(e);}
+		        
+		        return columnList;
+
+	    }
 	    
 	    public List<StudentPercent> getMarksList(String rno)
 	    {
@@ -69,7 +104,7 @@ System.out.println(columnCount);
 	        try
 	        {
 	        	//System.out.println(percent);
-	            rs = stmt.executeQuery("select  * from semmrks4 where RollNo='"+ rno +"'");
+	            rs = stmt.executeQuery("select  * from semwisemarks where RollNo='"+ rno +"'");
  
 	            while(rs.next())
 	            {
@@ -104,6 +139,37 @@ System.out.println(columnCount);
 	        
 	        return marksList;
 	    }
+	    public List<Status> getRequestStatus(String rno)
+	    {
+	    	
+	    	List<Status> requestsList = new ArrayList<Status>();
+	    	requestsList.clear();
+	   // System.out.println("in  "+marksList.size());
+	        try
+	        {
+	        	//System.out.println(percent);
+	            rs = stmt.executeQuery("select  * from test1.notify where roll='"+ rno +"'");
+ 
+	            while(rs.next())
+	            {
+	                Status student = EntityFactory.getStatus();
+	                
+	                //eligible.setId(rs.getInt(1));
+	                student.setrollId(rs.getString("roll"));
+	                student.setName(rs.getString("name"));
+	                student.setBranch(rs.getString("branch"));
+	                student.setSubjects(rs.getString("subjects"));
+	                student.setBatch(rs.getString("batch"));
+	                student.setStatus(rs.getString("status"));
+	                requestsList.add(student);
+	            }
+	            //System.out.println("out  "+marksList.size());
+	            
+	        }catch(Exception e){System.out.println(e);}
+	        
+	        return requestsList;
+	    }
+
 
 	    public List<StudentPercent> getSemMarksList(String rno)
 	    {
@@ -114,7 +180,7 @@ System.out.println(columnCount);
 	        try
 	        {
 	        	//System.out.println(percent);
-	            rs = stmt.executeQuery("SELECT distinct m.mroll,st.name,m.mscode,s.suname,s.susem,m.mmarks,s.sumarks as maxmarks FROM marks m,subjects s,studentInformation st where m.mscode=s.sucode  and m.mroll=st.roll and roll='"+ rno +"'");
+	            rs = stmt.executeQuery("SELECT distinct m.mroll,st.name,m.mscode,s.suname,m.msem,m.mtot,s.sutot as maxmarks FROM test1.marksformat m,test1.subjectsformat s,test1.studentInformation st where m.mscode=s.sucode  and m.mroll=st.roll and roll='"+ rno +"'");
  
 	            while(rs.next())
 	            {
@@ -135,8 +201,8 @@ System.out.println(columnCount);
 	                //user.setMobile(rs.getString(5));
 	                students.setSubjectCode(rs.getString("mscode"));
 	                students.setSubjectName(rs.getString("suname"));
-	                students.setSemester(rs.getInt("susem"));
-	                students.setMarksObtained(rs.getInt("mmarks"));
+	                students.setSemester(rs.getInt("msem"));
+	                students.setMarksObtained(rs.getInt("mtot"));
 	                students.setMaxMarks(rs.getInt("maxmarks"));
 	                semMarksList.add(students);
 	            }
@@ -152,7 +218,7 @@ System.out.println(columnCount);
 	    	 try
 		        {
 		        	//System.out.println(percent);
-		            rs = stmt.executeQuery("SELECT distinct m.mroll,st.name,m.mscode,s.suname,s.susem,m.mmarks,s.sumarks as maxmarks FROM marks m,subjects s,studentInformation st where m.mscode=s.sucode  and m.mroll=st.roll and roll='"+ rno +"'");
+		            rs = stmt.executeQuery("SELECT distinct m.mroll,st.name,m.mscode,s.suname,m.msem,m.mtot,s.sutot as maxmarks FROM test1.marksformat m,test1.subjectsformat s,test1.studentInformation st where m.mscode=s.sucode  and m.mroll=st.roll and roll='"+ rno +"'");
 	 
 		           // while(rs.next())
 		          //  {

@@ -24,17 +24,24 @@ public class JTableCRUD {
 	}
 
 	public void addStudent(JTableModel student) {
-		String insertQuery = "INSERT INTO student(sroll, sname, sbranch, sphone, smail, semdone" +
-				") VALUES (?,?,?,?,?,?)";
+		String insertQuery = "INSERT INTO studentinformation(roll, name, branch, phone, email, fathersname, mothersname, tenthpercent, twefthpercent, tenthschool,twelthcollege, semdone, batch, address" +
+				") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			pStmt = dbConnection.prepareStatement(insertQuery);
-			pStmt.setString(1, student.getSRoll());
-			pStmt.setString(2, student.getSName());
-			pStmt.setString(3, student.getSBranch());
-			pStmt.setString(4, student.getSPhone());
-			pStmt.setString(5, student.getSMail());
-			pStmt.setInt(6, student.getSemdone());
-			
+			pStmt.setString(1, student.getRoll());
+			pStmt.setString(2, student.getName());
+			pStmt.setString(3, student.getBranch());
+			pStmt.setString(4, student.getPhone());
+			pStmt.setString(5, student.getEmail());
+			pStmt.setString(6, student.getFathersname());
+			pStmt.setString(7, student.getMothersname());
+			pStmt.setFloat(8, student.getTenthpercent());
+			pStmt.setFloat(9, student.getTwelfthpercent());
+			pStmt.setString(10, student.getTenthschool());
+			pStmt.setString(11, student.getTwelthcollege());
+			pStmt.setInt(12, student.getSemdone());
+			pStmt.setInt(13, student.getBatch());
+			pStmt.setString(14, student.getAddress());
 			/*pStmt.setString(3, student.getDepartment());
 			pStmt.setString(4, student.getEmailId());
 			*/pStmt.executeUpdate();
@@ -43,11 +50,11 @@ public class JTableCRUD {
 		}
 	}
 
-	public void deleteStudent(String sroll) {
-		String deleteQuery = "DELETE FROM student WHERE sroll = ?";
+	public void deleteStudent(String roll) {
+		String deleteQuery = "DELETE FROM studentinformation WHERE roll = ?";
 		try {
 			pStmt = dbConnection.prepareStatement(deleteQuery);
-			pStmt.setString(1, sroll);
+			pStmt.setString(1, roll);
 			pStmt.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
@@ -55,16 +62,24 @@ public class JTableCRUD {
 	}
 
 	public void updateStudent(JTableModel student)  {
-		String updateQuery = "UPDATE student SET sname = ?, sbranch=?, sphone=?, smail=?, semdone=?" +
-				" WHERE STUDENTID = ?";
+		String updateQuery = "UPDATE studentinformation SET name = ?, branch=?, phone=?, email=?, fathersname=?, mthersname=?, tenthpercent=?, twelfthpercent=?, tenthschool=?, twelthcollege=?, semdone=?, batch=?, address=?" +
+				" WHERE roll = ?";
 		try {
 			pStmt = dbConnection.prepareStatement(updateQuery);		
-			pStmt.setString(1, student.getSName());
-			pStmt.setString(2, student.getSBranch());
-			pStmt.setString(2, student.getSPhone());
-			pStmt.setString(4, student.getSMail());
-			pStmt.setInt(5, student.getSemdone());
-			pStmt.setString(6, student.getSRoll());
+			pStmt.setString(1, student.getName());
+			pStmt.setString(2, student.getBranch());
+			pStmt.setString(2, student.getPhone());
+			pStmt.setString(4, student.getEmail());
+			pStmt.setString(5, student.getFathersname());
+			pStmt.setString(6, student.getMothersname());
+			pStmt.setFloat(7, student.getTenthpercent());
+			pStmt.setFloat(8, student.getTwelfthpercent());
+			pStmt.setString(9, student.getTenthschool());
+			pStmt.setString(10, student.getTwelthcollege());
+			pStmt.setInt(11, student.getSemdone());
+			pStmt.setInt(12, student.getBatch());
+			pStmt.setString(13, student.getAddress());
+			pStmt.setString(14, student.getRoll());
 			pStmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -78,9 +93,9 @@ public class JTableCRUD {
 		String query;
 		List<JTableModel> students = new ArrayList<JTableModel>();
 		if(passedpkey=="")
-			query = "SELECT distinct * FROM student ORDER BY sroll";
+			query = "SELECT distinct * FROM studentinformation ORDER BY roll";
 		else
-			query = "SELECT distinct * FROM student  WHERE sroll = '"+passedpkey+"'";
+			query = "SELECT distinct * FROM studentinformation  WHERE roll = '"+passedpkey+"'";
 		System.out.println(query);
 		try {
 			Statement stmt = dbConnection.createStatement();
@@ -88,12 +103,22 @@ public class JTableCRUD {
 			while (rs.next()) {
 				JTableModel student = new JTableModel();
 
-				student.setSRoll(rs.getString("sroll"));
-				student.setSName(rs.getString("sname"));
-				student.setSBranch(rs.getString("sbranch"));
-				student.setSPhone(rs.getString("sphone"));
-				student.setSMail(rs.getString("smail"));
+				student.setRoll(rs.getString("roll"));
+				student.setName(rs.getString("name"));
+				student.setBranch(rs.getString("branch"));
+				student.setPhone(rs.getString("phone"));
+				student.setEmail(rs.getString("email"));
+				student.setFathersname(rs.getString("fathersname"));
+				student.setMothersname(rs.getString("mothersname"));
+				student.setTenthpercent(rs.getFloat("tenthpercent"));
+				student.setTwelfthpercent(rs.getFloat("twelfthpercent"));
+				student.setTenthschool(rs.getString("tenthschool"));
+				student.setTwelthcollege(rs.getString("twelthcollege"));
 				student.setSemdone(rs.getInt("semdone"));
+				student.setBatch(rs.getInt("batch"));
+				student.setAddress(rs.getString("Address"));
+				
+				System.out.println(student);
 				students.add(student);
 				
 				

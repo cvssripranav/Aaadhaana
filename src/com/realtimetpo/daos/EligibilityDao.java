@@ -16,6 +16,7 @@ import java.util.List;
 
 import com.realtimetpo.factories.*;
 import com.realtimetpo.entities.Eligibility;
+import com.realtimetpo.entities.SubjectModel;
 public class EligibilityDao {
 	 Connection con = null;
 	    Statement stmt = null;
@@ -49,9 +50,9 @@ public class EligibilityDao {
 		        		chem="%";
 		        	System.out.println(percent);
 		        	if(allDept!=null)
-		            rs = stmt.executeQuery("select  * from semmrks4 where Aggregate>='"+ percent +"' and Tenth>='"+tenth+"'and Intermediate>='"+inter+"' and Backlogs<='"+backlogs+"' and SemesterCompleted='"+semester+"' and studentBatch='"+batch+"'");
+		            rs = stmt.executeQuery("select  * from semmrks5 where Aggregate>='"+ percent +"' and Tenth>='"+tenth+"'and Intermediate>='"+inter+"' and Backlogs<='"+backlogs+"' and SemesterCompleted='"+semester+"' and studentBatch='"+batch+"'");
 		        	else
-		        		rs = stmt.executeQuery("select  * from semmrks4 where Aggregate>='"+ percent +"' and SemesterCompleted='"+semester+"' and Tenth>='"+tenth+"'and Intermediate>='"+inter+"' and Backlogs<='"+backlogs+"' and studentBatch='"+batch+"' and sbranch in('"+ cse +"','"+ ece +"','"+ eee +"','"+ it +"','"+ mech +"','"+ civil +"','"+ chem +"')");	
+		        		rs = stmt.executeQuery("select  * from semmrks5 where Aggregate>='"+ percent +"' and SemesterCompleted='"+semester+"' and Tenth>='"+tenth+"'and Intermediate>='"+inter+"' and Backlogs<='"+backlogs+"' and studentBatch='"+batch+"' and Department in('"+ cse +"','"+ ece +"','"+ eee +"','"+ it +"','"+ mech +"','"+ civil +"','"+ chem +"')");	
 	 
 System.out.println(percent);
 		            //rs = stmt.executeQuery("select  * from smmrks where percent>='"+ percent +"' and sbranch in('"+ cse +"','"+ ece +"','"+ eee +"','"+ it +"','"+ mech +"','"+ civil +"','"+ chem +"')");
@@ -108,9 +109,9 @@ System.out.println(columnCount);
 	        		chem="%";
 	        	System.out.println(cse);
 	        	if(allDept!=null)
-		            rs = stmt.executeQuery("select  * from semmrks4 where Aggregate>='"+ percent +"' and Tenth>='"+tenth+"'and Intermediate>='"+inter+"' and Backlogs<='"+backlogs+"' and SemesterCompleted='"+semester+"' and StudentBatch='"+batch+"'");
+		            rs = stmt.executeQuery("select  * from semmrks5 where Aggregate>='"+ percent +"' and Tenth>='"+tenth+"'and Intermediate>='"+inter+"' and Backlogs<='"+backlogs+"' and SemesterCompleted='"+semester+"' and StudentBatch='"+batch+"'");
 		        	else
-		        		rs = stmt.executeQuery("select  * from semmrks4 where Aggregate>='"+ percent +"' and SemesterCompleted='"+semester+"' and StudentBatch='"+batch+"' and Tenth>='"+tenth+"'and Intermediate>='"+inter+"' and Backlogs<='"+backlogs+"'and Department in('"+ cse +"','"+ ece +"','"+ eee +"','"+ it +"','"+ mech +"','"+ civil +"','"+ chem +"')");	
+		        		rs = stmt.executeQuery("select  * from semmrks5 where Aggregate>='"+ percent +"' and SemesterCompleted='"+semester+"' and StudentBatch='"+batch+"' and Tenth>='"+tenth+"'and Intermediate>='"+inter+"' and Backlogs<='"+backlogs+"'and Department in('"+ cse +"','"+ ece +"','"+ eee +"','"+ it +"','"+ mech +"','"+ civil +"','"+ chem +"')");	
 	  
 	            while(rs.next())
 	            {
@@ -170,6 +171,40 @@ System.out.println(columnCount);
 	        
 	        return eligibleList;
 	    }
+	    public List<SubjectModel> getSubjectList(String department)
+	    {
+	    	
+	    	List<SubjectModel> subjectList = new ArrayList<SubjectModel>();
+	    	
+	    	subjectList.clear();
+	    System.out.println("in  "+subjectList.size());
+	        try
+	        {
+	        	    	
+		            rs = stmt.executeQuery("select  distinct suname,mscode from test1.marksformat,test1.subjectsformat where mbranch='"+ department +"' and mscode=sucode");
+		        	/*else
+		        		rs = stmt.executeQuery("select  * from semmrks5 where Aggregate>='"+ percent +"' and SemesterCompleted='"+semester+"' and StudentBatch='"+batch+"' and Tenth>='"+tenth+"'and Intermediate>='"+inter+"' and Backlogs<='"+backlogs+"'and Department in('"+ cse +"','"+ ece +"','"+ eee +"','"+ it +"','"+ mech +"','"+ civil +"','"+ chem +"')");*/	
+	  
+	            while(rs.next())
+	            {
+	            SubjectModel list = EntityFactory.getSubject(); 
+	                
+	               list.setSuname(rs.getString(1));
+	               list.setSucode(rs.getString(2));
+	               
+	               
+	               
+	                //user.setMobile(rs.getString(5));
+	                
+	                subjectList.add(list);
+	            }
+	           // System.out.println("out  "+eligibleList.size());
+	            
+	        }catch(Exception e){System.out.println(e);}
+	        
+	        return subjectList;
+	    }
+	  
 	  /*  public void emptys()
 	    {
 	    	System.out.println("hii");
@@ -300,7 +335,7 @@ System.out.println(columnCount);
 	    int i=0;
 	    List<String> options=new ArrayList<String>();
 	    	try{
-	    		rs=stmt.executeQuery("Select RollNo,Name,Department,EmailId,Phone,Tenth,Intermediate,Sem1percent,Sem2percent,Sem3percent,Sem4percent,Sem5percent,Sem6percent,Sem7percent,Sem8percent,Aggregate,Backlogs,SemesterCompleted,StudentBatch from semmrks4");
+	    		rs=stmt.executeQuery("Select RollNo,Name,Department,EmailId,Phone,Tenth,Intermediate,Sem1percent,Sem2percent,Sem3percent,Sem4percent,Sem5percent,Sem6percent,Sem7percent,Sem8percent,Aggregate,Backlogs,SemesterCompleted,StudentBatch from semmrks5");
 	    		  ResultSetMetaData rsmd = rs.getMetaData();
 	                 int count=rsmd.getColumnCount();
 	                 while(i<count){
@@ -328,7 +363,7 @@ System.out.println(columnCount);
 	    		
 	    		}
 	    	*/
-	    	q=q+" from semmrks4 where Aggregate>='"+percent+"' and SemesterCompleted='"+semester+"' and StudentBatch='"+batch+"' and Tenth>='"+tenth+"' and Intermediate>='"+inter+"' and Backlogs<='"+backlogs+"'";
+	    	q=q+" from semmrks5 where Aggregate>='"+percent+"' and SemesterCompleted='"+semester+"' and StudentBatch='"+batch+"' and Tenth>='"+tenth+"' and Intermediate>='"+inter+"' and Backlogs<='"+backlogs+"'";
 	    	try{
 	    		if(cse3.equalsIgnoreCase("null"))
 	        		cse3="%";
@@ -352,7 +387,7 @@ System.out.println(columnCount);
 	        	}
 		        	else{
 		        		System.out.println("oof");
-		        		RS = stmt.executeQuery(q+" and sbranch in('"+ cse3 +"','"+ ece3 +"','"+ eee3 +"','"+ it3 +"','"+ mech3 +"','"+ civil3 +"','"+ chem3 +"')");	
+		        		RS = stmt.executeQuery(q+" and Department in('"+ cse3 +"','"+ ece3 +"','"+ eee3 +"','"+ it3 +"','"+ mech3 +"','"+ civil3 +"','"+ chem3 +"')");	
 	 
 		        	}
 	    	//	rs=stmt.executeQuery(q);

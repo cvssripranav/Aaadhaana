@@ -100,6 +100,7 @@ public class XCDTest extends HttpServlet {
         	int k=0;
         	int z=0;
         	int subcount=0;
+        	boolean AIOBflag =true;
 	  
      
 	String cvalue="";
@@ -107,14 +108,14 @@ public class XCDTest extends HttpServlet {
 	String sql="";
 	String subvalue="";
 	String rollvalue="";
-	String[] subjects = new String[10];
+	String[] subjects = new String[12];
 	Object element;
 	
     
 	  
 	  
 	  
-      CSVReader reader = new CSVReader(new FileReader(fpath), ',', '"', 7);
+      CSVReader reader = new CSVReader(new FileReader(fpath), ',', '"', 0);
        
       //Read all rows at once
 		List<String[]> allRows = reader.readAll();
@@ -129,32 +130,52 @@ public class XCDTest extends HttpServlet {
 			 Statement stmt = con.createStatement();
 			 
 			 
-			 String query = "select sucode from subjectsformat where subranch="+"'"+subranch+"'"+" and susem="+"'"+susem+"'"+" and subatch="+"'"+subatch+"'";
-			 System.out.println(query);
-			 ResultSet rs = stmt.executeQuery(query);
-			 System.out.println(query);
-			 while(rs.next())
-			 {
-				 subjects[z]=rs.getString(1);
-				 System.out.println(subjects[z]);
-				 z++;
-			 }
+			
 			 
-			 subcount=z;
-			 ccount = (subcount*4)+1;
-			 z=0;
-			  System.out.println(ccount);
+			
 			
 			
 			 for(i=0;i<allRows.size();i++)
 			  {
+				 if(i==0)
+				  {
+					 j=0;
+					 while(AIOBflag)
+					 {
+					 try
+						{
+						
+						  element = allRows.get(i)[j];
+						  subjects[z++]= element.toString();
+						  j++;						  
+						}
+						catch(ArrayIndexOutOfBoundsException exception)
+						{
+							AIOBflag=false;
+							
+						}
+					
+					 }
+					 subcount=z;
+					 ccount = (subcount*4)+1;
+					 z=0;
+					 System.out.println(ccount);
+					 System.out.println(subjects[z]);
+					 j=0;
+					 
+					  
+				  }
+				 else{
 				 element = allRows.get(i)[0];
 				rollvalue = "'"+element.toString()+"'";
 				
 				  for(j=1;j<ccount;j=j+4)
 				  {
+					 
 					
 					subvalue = "'"+subjects[z++]+"'";
+					
+					  
 					 
 					 	for(k=0;k<4;k++)
 						{
@@ -167,11 +188,11 @@ public class XCDTest extends HttpServlet {
 								{
 									
 								cvalue=cvalue+value;
-								sql= "Insert into "+tablename+" values "+"("+rollvalue+","+subvalue+","+cvalue+")";
+								sql= "Insert into "+tablename+" values "+"("+rollvalue+","+subvalue+","+cvalue+",'"+subranch+"'"+",'"+susem+"'"+",'"+subatch+"'"+")";
 								System.out.println(sql);
 								int b = stmt.executeUpdate(sql);
 								sql="";
-								   if(b<0)System.out.println("Epic Fail!");
+								    
 								   cvalue="";
 								}
 								
@@ -188,16 +209,17 @@ public class XCDTest extends HttpServlet {
 				 
 				 
 
-				  
+			  }  
 			  }
+			  
 				  
-	 
+			 request.setAttribute("message", "Upload has been done successfully!");
+
 	  
-	   }catch(Exception d){d.printStackTrace();}
+	   }catch(Exception d){d.printStackTrace(); request.setAttribute("message", "There was an error: ");}
       
-            request.setAttribute("message", "Upload has been done successfully!");
-        } catch (Exception ex) {
-            request.setAttribute("message", "There was an error: " + ex.getMessage());
+                   } catch (Exception ex) {
+          
         }
         getServletContext().getRequestDispatcher("/ExCDTest.jsp").forward(request, response);
 	}

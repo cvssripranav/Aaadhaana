@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import ="com.realtimetpo.daos.*"%>
+<%@ page import ="com.realtimetpo.entities.*"%>
+<%@ page import=" com.realtimetpo.factories.*"%>
+<%@page import="com.realtimetpo.daos.EligibilityDao"%>
+<%EligibilityDao edao=DAOFactory.getEligibleDao();
+List<SubjectModel> subject=new ArrayList<SubjectModel>();
+subject=edao.getSubjectList(request.getParameter("department"));
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,80 +22,48 @@
 <link rel="stylesheet" type="text/css" href="nav_bar.css"/>
 <link rel="stylesheet" type="text/css" href="KuboStudent.css"/> 
   
- <script>
- 
- function addInput()
- {
+ <script type="text/javascript">
+	
+   
 
-	 
-		    $('#mail').load('inbox.jsp');
-		
-        
-}
- </script> 
-  <script>
-            $(document).ready(function() {
-                $('#radioButton').click(function() {
-                   // alert($('#columnData').html());
-                    var name = $('#percent').html();             
-                    $.post("MailingController", {'name': name}, 
-                    	       function(data) 
-                    	       { 
-                    	          alert("Result from second.jsp: " + data.name + " " + data.type); 
-                    	       }
-                    	);              
-                });
-               
-            });
-          /*  function inactive()
-{
-            	var generate=$("#generate").val();
-            	alert(generate)
-            	if(generate.match("no"))
-            		{
-            	$("#filename").prop("disabled","disabled");
-            		}
-            	           	
-            	}          
-            function active()
-            {
-                        	var generate=$("#generates").val();
-                        	alert(generate)
-                        	if(generate.match("yes"))
-                        		{
-                        	           		$("#filename").removeProp("disabled");	
-                        	}    }      
-            
-            */
-            
-            $(document).ready(function() {
-                $('#generate').click(function() {
-                	$("#filename").prop("disabled","disabled");
-                   // alert($('#columnData').html());
-                               
-                });
-                $('#generates').click(function() {
-                	$("#filename").removeProp("disabled");
-                   // alert($('#columnData').html());
-                               
-                });
-               
-            });
-           
-             
-        </script>
-        <script>$(document).ready(function() {
-       	 $('#generate').click(function() {
-             // alert($('#columnData').html());
-              var filename = $('#filename').html();             
-              $.post("download.jsp", {'filename': filename}, 
-              	       function(data) 
-              	       { 
-              	          alert("Result from second.jsp: " + data.filename + " " + data.type); 
-              	       }
-              	);              
-          });
-    });</script>
+
+var request;  
+function sendInfos()  
+{  
+	alert("hii");
+var v=document.notify.subjects.value; 
+var id=document.notify.rno.value;
+var ids=document.notify.department.value;
+var name="<%=session.getAttribute("name")%>";
+ 
+
+	var url="sendNotification.jsp?sub="+v+"&id="+id+"&dept="+ids+"&name="+name;  
+	//?sub="+v+"&id="+id+"&dept="+ids+"&name="+name
+   /* var links=v; 
+   alert("Result from second.jsp: " + links ); */ 
+ if(window.XMLHttpRequest){  
+request=new XMLHttpRequest();  
+}  
+else if(window.ActiveXObject){  
+request=new ActiveXObject("Microsoft.XMLHTTP");  
+}  
+  
+try{  
+request.onreadystatechange=getInfo;  
+request.open("GET",url,true);  
+request.send(null);  
+}catch(e){alert("Unable to connect to server");}  
+}  
+  
+function getInfo(){  
+if(request.readyState==4){  
+var val=request.responseText;  
+document.getElementById('op').innerHTML=val;  
+
+}  
+ 
+ } 
+</script>
   
 </head>
 <body>
@@ -125,6 +101,7 @@
 		<li><a href=<%= "\"StdentDetails.jsp?rno=" + request.getParameter("rno") + "&department="+request.getParameter("department")+"\"" %> id="studentdetails"> My Profile</a></li>
 		 <li><a href=<%= "\"StudentSemPerformance.jsp?rno=" + request.getParameter("rno") + "&department="+request.getParameter("department")+"\"" %> id="studentdetails">My Marks</a></li>
         <li><a href="#" style="background-color:white; color:#1e90ff">Notify</a></li>
+        <li><a href=<%= "\"RequestStatus.jsp?rno=" + request.getParameter("rno") + "&department="+request.getParameter("department")+"\"" %>  id="semMarks">Request Status</a></li>
 		<li><a href="#">Blog</a></li>
 		<li><a href="Logout" id="logout">Logout</a></li>
 		<li><a href="#" style="background-color:white; color:#1e90ff">Welcome  <%=" "+session.getAttribute("name")+"! "%></a></li>
@@ -198,19 +175,32 @@ String department=request.getParameter("department");
 		</div>
 	</div>
 	
-	<div class="form-group">
-		    <label for="subjects" class=" col-xs-offset-3 col-xs-2 control-label"><span>Subjects</span></label>
-		    <textarea class="form-control" name="subjects" placeholder="Enter subject names for which marks are wrong" rows="3" style="width:30%"></textarea>
+	<div class="form-group"> 
+		<label for="batch" class="col-xs-offset-3 col-xs-2 control-label"><span>Batch</span></label>
+		<div class="col-xs-3">
+			  <input type="text" style="height:30px"  class="form-control" name="batch" id="batch"  required/>
+		</div>
 	</div>
 	
-	<div class="form-group">
-		    <label for="marks" class=" col-xs-offset-3 col-xs-2 control-label"><span>Marks</span></label>
-		    <textarea class="form-control" name="marks" placeholder="Enter subject names along with marks" rows="3" style="width:30%"></textarea>
+	<div class="form=group">
+	<label for="subjects" class="col-xs-offset-3 col-xs-2 control-label"><span>Subjects</span></label>
+	<div class="col-xs-3">
+		<select class="form-control" name="subjects" id="subjects" style="height:30px;">
+			<%
+			for(SubjectModel str:subject)
+			{
+			%>
+		<option value=<%=str.getSucode() %>-<%=str.getSuname() %>><%=str.getSucode() %>-<%=str.getSuname() %></option>
+			<%} %>
+			
+		</select>
+		</div>
 	</div>
 	
+
 	 <div class="form-group" style="margin-left:-10px">
 		<div class="col-xs-offset-5 col-xs-1" >
-		 <input type="submit" name="notify" class="admin-button" value="Notify" id="notify"> 
+		 <input type="button" name="send"  class="admin-button"  id="send" value="AddSubject" onClick="sendInfos()">
 		</div>
 		
 		<div class="col-xs-2" style="margin-left:50px">
@@ -221,7 +211,7 @@ String department=request.getParameter("department");
 
 
 
-<div id="mail"> </div>
+
 
 
 
@@ -233,7 +223,7 @@ String department=request.getParameter("department");
 }
 %>
  <footer>
-	<p>	Kubo - Centralized Placement Web Application<br>
+	<p>	Anurag Group of Institutions- Centralized Placement Web Application<br>
 		 E-mail:cvsrit13@gmail.com<br>
 		 &copy;All rights reserved, Department of Information Technology
 		 <br>2013-2017
